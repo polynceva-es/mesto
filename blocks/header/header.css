@@ -1,0 +1,5 @@
+.header {
+  box-sizing: border-box;
+  border-bottom: 1px solid #545454;
+  min-height: 74px;
+}
