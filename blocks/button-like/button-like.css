@@ -1,0 +1,29 @@
+.button-like {
+  background-image: url(../../images/heart_disabled.svg);
+  background-color: #FFFFFF;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  border: none;
+
+  position: absolute;
+  bottom: 30px;
+  right: 20px;
+
+  width: 22px;
+  height: 19px;
+
+  padding: 0;
+
+  z-index: 2;
+
+  cursor: pointer;
+}
+
+.button-like:hover {
+  opacity: .5;
+}
+
+/* .button-like:active {
+background-image: url(../../images/heart_active.svg);
+} */
