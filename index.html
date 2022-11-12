@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Сервис Mesto">
+  <meta name="author" content="Ekaterina Polyntseva">
+  <link rel="stylesheet" href="./pages/index.css">
+  <title>Cервис Mesto</title>
+</head>
+
+
+<body class="page">
+
+  <!--Шапка сайта -->
+  <header class="header page__conteiner">
+    <img class="header__logo" src="./images/logo.svg" alt="Логотип Место">
+  </header>
+
+  <!--Основное содержимое сайта-->
+  <main class="content page__conteiner">
+
+    <section class="profile">
+
+      <div class="profile__conteiner">
+        <img class="profile__img" src="./images/Kusto.jpg" alt="Фото профиля">
+
+        <div class="profile__info">
+          <div class="profile__info_container">
+            <h1 class="profile__title">Жак-Ив Кусто</h1>
+            <button class="button-edit"></button>
+          </div>
+          <p class="profile__subtitle">Исследователь океана</p>
+        </div>
+
+      </div>
+
+      <button class="button-add"></button>
+
+    </section>
+
+    <section class="elements">
+      <article class="card">
+        <button class="button-like"></button>
+        <figure class="card__item">
+          <img class="card__image" src="./images/moscow.jpg" alt="Москва">
+          <figcaption class="card__caption">Москва</figcaption>
+        </figure>
+      </article>
+
+      <article class="card">
+        <button class="button-like"></button>
+        <figure class="card__item">
+          <img class="card__image" src="./images/spb.jpg" alt="Санкт-Петербург">
+          <figcaption class="card__caption">Санкт-Петербург</figcaption>
+        </figure>
+      </article>
+
+      <article class="card">
+        <button class="button-like"></button>
+        <figure class="card__item">
+          <img class="card__image" src="./images/krasnoyarsk.jpg" alt="Красноярск">
+          <figcaption class="card__caption">Красноярск</figcaption>
+        </figure>
+      </article>
+
+      <article class="card">
+        <button class="button-like"></button>
+        <figure class="card__item">
+          <img class="card__image" src="./images/vladivostok.jpg" alt="Владивосток">
+          <figcaption class="card__caption">Владивосток</figcaption>
+        </figure>
+      </article>
+
+      <article class="card">
+        <button class="button-like"></button>
+        <figure class="card__item">
+          <img class="card__image" src="./images/russkii.jpg" alt="Остров Русский">
+          <figcaption class="card__caption">Остров Русский</figcaption>
+        </figure>
+      </article>
+
+      <article class="card">
+        <button class="button-like"></button>
+        <figure class="card__item">
+          <img class="card__image" src="./images/velikii_ustug.jpeg" alt="Великий Устюг">
+          <figcaption class="card__caption">Великий Устюг</figcaption>
+        </figure>
+      </article>
+
+    </section>
+
+  </main>
+
+  <!--Подвал сайта -->
+
+  <footer class="footer page__conteiner">
+    <p class="footer__caption">© 2022 Mesto Russia (Е. Полынцева)</p>
+  </footer>
+
+  <!-- Поп-ап -->
+  <section class="popup"> <!--popup_opened-->
+    <form class="popup__container">
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <input class="popup__text popup__text_type_name" type="text" name="name" placeholder="Имя">
+      <input class="popup__text popup__text_type_about" type="text" name="about" placeholder="О себе">
+      <button class="button-save" type="submit">Сохранить</button>
+      <button class="button-close" type="reset"><img class="button-close__img" src="./images/Close_Icon.svg" alt="Закрыть"></button>
+    </form>
+  </section>
+
+
+  <script src="./index.js"> </script>
+</body>
+
+</html>
