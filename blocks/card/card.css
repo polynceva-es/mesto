@@ -4,8 +4,6 @@
   height: 361px;
   border-radius: 10px;
   background-color: #FFFFFF;
-
   display: flex;
-
-  position: relative;
+  flex-direction: column;
 }

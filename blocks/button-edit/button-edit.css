@@ -1,28 +1,22 @@
 .button-edit {
-	background-image: url(../../images/edit-button.svg);
+  background-image: url(../../images/edit-button.svg);
   background-repeat: no-repeat;
   background-position: center;
-
   width: 24px;
-	height: 24px;
-
+  height: 24px;
   background-color: #000000;
-	border: 1px solid #FFFFFF;
-	box-sizing: border-box;
-
+  border: 1px solid #FFFFFF;
+  box-sizing: border-box;
   padding: 0;
   margin: 0 0 0 18px;
-
   cursor: pointer;
 }
 
 @media screen and (max-width: 380px) {
   .button-edit {
     width: 18px;
-	  height: 18px;
-
+    height: 18px;
     background-image: url(../../images/edit-button_small.svg);
-
     margin-left: 10px;
   }
 }
