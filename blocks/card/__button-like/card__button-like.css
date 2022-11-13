@@ -1,5 +1,5 @@
-.button-like {
-  background-image: url(../../images/heart_disabled.svg);
+.card__button-like {
+  background-image: url(../../../images/heart_disabled.svg);
   background-color: #FFFFFF;
   background-position: center;
   background-repeat: no-repeat;
@@ -15,6 +15,6 @@
   box-sizing: border-box;
 }
 
-.button-like:hover {
+.card__button-like:hover {
   opacity: .5;
 }

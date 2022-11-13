@@ -1,6 +1,6 @@
-.button-save {
+.popup__button-save {
   padding: 0;
-  margin-top: auto;
+  margin-top: 18px;
   box-sizing: border-box;
   width: 358px;
   height: 50px;
@@ -17,15 +17,16 @@
   cursor: pointer;
 }
 
-.button-save:hover {
+.popup__button-save:hover {
   opacity: 0.8;
 }
 
 @media screen and (max-width: 530px) {
-  .button-save {
+  .popup__button-save {
     width: 238px;
     height: 46px;
     font-size: 14px;
     line-height: 17px;
+    margin-top: 15px;
   }
 }
