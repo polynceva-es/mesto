@@ -1,8 +1,7 @@
 .popup__text {
   width: 358px;
-  min-height: 27px;
   box-sizing: border-box;
-  padding: 0 0 5px 0;
+  padding: 0 0 9px 0;
   font-family: 'Inter', Arial, sans-serif;
   font-style: normal;
   font-weight: 400;
