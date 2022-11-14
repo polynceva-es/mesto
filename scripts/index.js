@@ -1,7 +1,7 @@
 const buttonEdit = document.querySelector(".profile__button-edit");
 const buttonClose = document.querySelector(".popup__button-close");
 const popup = document.querySelector(".popup");
-const formElement = popup.querySelector(".popup__form-edit"); //Нашли форму
+const formElement = popup.querySelector(".popup__form"); //Нашли форму
 const inputName = popup.querySelector(".popup__text_type_name"); //Нашли поле ввода Имя
 const inputAbout = popup.querySelector(".popup__text_type_about"); //Нашли поле ввода О себе
 const profileTitle = document.querySelector(".profile__title"); //Нашли Имя на странице
