@@ -24,62 +24,26 @@
         <div class="profile__info">
           <div class="profile__info-container">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
-            <button class="profile__button-edit" type="button" aria-label="Редактировать"></button>
+            <button class="button button_type_edit" type="button" aria-label="Редактировать"></button>
           </div>
           <p class="profile__subtitle">Исследователь океана</p>
         </div>
       </div>
-      <button class="profile__button-add" type="button" aria-label="Добавить"></button>
+      <button class="button button_type_add" type="button" aria-label="Добавить"></button>
     </section>
     <!--Секция Карточки-->
     <section class="elements">
-      <article class="card">
-        <img class="card__image" src="./images/moscow.jpg" alt="Москва">
-        <div class="card__item">
-          <h2 class="card__caption">Москва</h2>
-          <button class="card__button-like" type="button" aria-label="Поставить лайк"></button>
-        </div>
-      </article>
+      <template>
+        <article class="card">
+          <img class="card__image" src="" alt="">
+          <button class="button button_type_delete" type="button" aria-label="Удалить карточку"></button>
+          <div class="card__item">
+            <h2 class="card__caption"></h2>
+            <button class="button button_type_like" type="button" aria-label="Поставить лайк"></button>
+          </div>
+        </article>
+      </template>
 
-      <article class="card">
-        <img class="card__image" src="./images/spb.jpg" alt="Санкт-Петербург">
-        <div class="card__item">
-          <h2 class="card__caption">Санкт-Петербург</h2>
-          <button class="card__button-like" type="button" aria-label="Поставить лайк"></button>
-        </div>
-      </article>
-
-      <article class="card">
-        <img class="card__image" src="./images/krasnoyarsk.jpg" alt="Красноярск">
-        <div class="card__item">
-          <h2 class="card__caption">Красноярск</h2>
-          <button class="card__button-like" type="button" aria-label="Поставить лайк"></button>
-        </div>
-      </article>
-
-      <article class="card">
-        <img class="card__image" src="./images/vladivostok.jpg" alt="Владивосток">
-        <div class="card__item">
-          <h2 class="card__caption">Владивосток</h2>
-          <button class="card__button-like" type="button" aria-label="Поставить лайк"></button>
-        </div>
-      </article>
-
-      <article class="card">
-        <img class="card__image" src="./images/russkii.jpg" alt="Остров Русский">
-        <div class="card__item">
-          <h2 class="card__caption">Остров Русский</h2>
-          <button class="card__button-like" type="button" aria-label="Поставить лайк"></button>
-        </div>
-      </article>
-
-      <article class="card">
-        <img class="card__image" src="./images/velikii_ustug.jpeg" alt="Великий Устюг">
-        <div class="card__item">
-          <h2 class="card__caption">Великий Устюг</h2>
-          <button class="card__button-like" type="button" aria-label="Поставить лайк"></button>
-        </div>
-      </article>
     </section>
   </main>
   <!--Подвал сайта -->
@@ -87,18 +51,40 @@
     <p class="footer__caption">&copy; 2022 Mesto Russia</p>
   </footer>
   <!-- Поп-ап -->
-  <div class="popup">
+  <div class="popup popup_close">
     <div class="popup__container">
-      <button class="popup__button-close" type="button" aria-label="Закрыть"></button>
-      <form class="popup__form" name="form-edit" action="#" method="get">
-        <h2 class="popup__title">Редактировать профиль</h2>
-        <input class="popup__text popup__text_type_name" type="text" name="name" placeholder="Имя">
-        <input class="popup__text popup__text_type_about" type="text" name="about" placeholder="О себе">
-        <button class="popup__button-save" type="submit">Сохранить</button>
-      </form>
+      <button class="button button_type_close" type="button" aria-label="Закрыть"></button>
+
+
+        <form class="popup__form popup__form_edit" name="form-edit" action="#" method="get">
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <input class="popup__text popup__text_type_name" type="text" name="name" placeholder="Имя">
+          <input class="popup__text popup__text_type_about" type="text" name="about" placeholder="О себе">
+          <button class="button button_type_submit" type="submit" name="save" aria-label="Сохранить">Сохранить</button>
+        </form>
+
+
+
+        <form class="popup__form popup__form_add" name="form-add" action="#" method="get">
+          <h2 class="popup__title">Новое место</h2>
+          <input class="popup__text popup__text_type_title" type="text" name="title" placeholder="Название">
+          <input class="popup__text popup__text_type_url" type="text" name="url" placeholder="Ссылка на картинку">
+          <button class="button button_type_submit" type="submit" name="add" aria-label="Создать">Создать</button>
+        </form>
+
+
+      <template id="form-image">
+        <form class="popup__form" name="form-image" action="#" method="get">
+          <figure>
+            <figcaption>
+            </figcaption>
+          </figure>
+        </form>
+      </template>
+
     </div>
   </div>
-  <script src="./scripts/index.js"> </script>
+  <script src="./scripts/index.js"></script>
 </body>
 
 </html>
