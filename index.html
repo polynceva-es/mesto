@@ -55,32 +55,27 @@
     <div class="popup__container">
       <button class="button button_type_close" type="button" aria-label="Закрыть"></button>
 
+      <form class="popup__form popup__form_edit" name="form-edit" action="#" method="get">
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <input class="popup__text popup__text_type_name" type="text" name="name" placeholder="Имя">
+        <input class="popup__text popup__text_type_about" type="text" name="about" placeholder="О себе">
+        <button class="button button_type_submit" type="submit" name="save" aria-label="Сохранить">Сохранить</button>
+      </form>
 
-        <form class="popup__form popup__form_edit" name="form-edit" action="#" method="get">
-          <h2 class="popup__title">Редактировать профиль</h2>
-          <input class="popup__text popup__text_type_name" type="text" name="name" placeholder="Имя">
-          <input class="popup__text popup__text_type_about" type="text" name="about" placeholder="О себе">
-          <button class="button button_type_submit" type="submit" name="save" aria-label="Сохранить">Сохранить</button>
-        </form>
+      <form class="popup__form popup__form_add" name="form-add" action="#" method="get">
+        <h2 class="popup__title">Новое место</h2>
+        <input class="popup__text popup__text_type_title" type="text" name="title" placeholder="Название">
+        <input class="popup__text popup__text_type_url" type="text" name="url" placeholder="Ссылка на картинку">
+        <button class="button button_type_submit" type="submit" name="add" aria-label="Создать">Создать</button>
+      </form>
 
+      <form class="popup__form" name="form-image" action="#" method="get">
+        <figure>
+          <figcaption>
+          </figcaption>
+        </figure>
+      </form>
 
-
-        <form class="popup__form popup__form_add" name="form-add" action="#" method="get">
-          <h2 class="popup__title">Новое место</h2>
-          <input class="popup__text popup__text_type_title" type="text" name="title" placeholder="Название">
-          <input class="popup__text popup__text_type_url" type="text" name="url" placeholder="Ссылка на картинку">
-          <button class="button button_type_submit" type="submit" name="add" aria-label="Создать">Создать</button>
-        </form>
-
-
-      <template id="form-image">
-        <form class="popup__form" name="form-image" action="#" method="get">
-          <figure>
-            <figcaption>
-            </figcaption>
-          </figure>
-        </form>
-      </template>
 
     </div>
   </div>
