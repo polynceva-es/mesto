@@ -1,36 +1,43 @@
 const initialCards = [
   {
-    name: 'Сахалин',
-    url: 'https://images.unsplash.com/photo-1662953748980-f8adec7fdf6f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTAxfHwlRDElODAlRDAlQkUlRDElODElRDElODElRDAlQjglRDElOEZ8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60'
+    name: 'Кабардино-Балкарская Республика',
+    url: 'https://images.unsplash.com/photo-1622381638713-64bc713d8f48?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'
   },
   {
-    name: 'Республика Алтай',
-    url: 'https://images.unsplash.com/photo-1605354180969-0f3fc29665bf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTIwfHwlRDElODAlRDAlQkUlRDElODElRDElODElRDAlQjglRDElOEZ8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60'
+    name: 'Переславль-Залесский',
+    url: 'https://images.unsplash.com/photo-1631083215590-63346fae79f4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80'
   },
   {
-    name: 'Красноярский край',
-    url: 'https://images.unsplash.com/photo-1597125760773-b0166e249ea7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTF8fHJ1c3NpYXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60'
+    name: 'Республика Карелия',
+    url: 'https://images.unsplash.com/photo-1632937024624-a0ab29126f8c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80'
   },
   {
-    name: 'Республика Дагестан',
-    url: 'https://images.unsplash.com/photo-1580405658898-847dafe134e9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTg2fHwlRDElODAlRDAlQkUlRDElODElRDElODElRDAlQjglRDElOEZ8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60'
+    name: 'Сихотэ-Алинь',
+    url: 'https://images.unsplash.com/photo-1644543419167-2cc7a5738665?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1935&q=80'
   },
   {
-    name: 'Иркутская область',
-    url: 'https://images.unsplash.com/photo-1575297209502-8458cef48bf9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTk4fHwlRDElODAlRDAlQkUlRDElODElRDElODElRDAlQjglRDElOEZ8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60'
+    name: 'Карачаево-Черкесская Республика',
+    url: 'https://images.unsplash.com/photo-1627329904799-607897b1eb60?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80'
   },
   {
-    name: 'Вологодская область',
-    url: 'https://images.unsplash.com/photo-1623828168222-288542b2c276?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTQ3fHwlRDElODAlRDAlQkUlRDElODElRDElODElRDAlQjglRDElOEZ8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60'
+    name: 'Московская Область',
+    url: 'https://images.unsplash.com/photo-1609067936529-59bf24113fec?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2072&q=80'
   }
 ];
-const buttonClose = document.querySelector('.button_type_close');
-const popup = document.querySelector('.popup');
-const buttonEdit = document.querySelector('.button_type_edit');
-const buttonAdd = document.querySelector('.button_type_add');
-const formEditElement = popup.querySelector('.popup__form_edit');
-const formAddElement = popup.querySelector('.popup__form_add');
 
+const buttonEditProfile = document.querySelector('.button_type_edit');
+const buttonAddCard = document.querySelector('.button_type_add');
+const conteinerFormEditProfile = document.querySelector('.popup__conteiner_form_edit');
+const conteinerFormAddCard = document.querySelector('.popup__conteiner_form_add');
+const conteinerPopupImage = document.querySelector('.popup__conteiner_image');
+const formEditProfile = conteinerFormEditProfile.querySelector('.popup__form_edit');
+const formAddCard = conteinerFormAddCard.querySelector('.popup__form_add');
+const inputName = conteinerFormEditProfile.querySelector('.popup__text_type_name'); //Нашли поле ввода Имя
+const inputAbout = conteinerFormEditProfile.querySelector('.popup__text_type_about'); //Нашли поле ввода О себе
+const profileTitle = document.querySelector('.profile__title'); //Нашли Имя на странице
+const profileSubtitle = document.querySelector('.profile__subtitle'); //Нашли О себе на странице
+const profilePhoto = document.querySelector('.profile__img');
+profilePhoto.addEventListener('click', openPopupWithImage);
 
 //функция нажатия на кнопку Like
 function addLike(evt) {
@@ -45,110 +52,112 @@ function addLike(evt) {
  cardToDelete.remove();
  }
 
-//функция закрытия поп-апа
-function closePopup() {
-  const popupForms = document.querySelectorAll('.popup__form');
-  for (i=0; i<popupForms.length; i+=1) {
-    popupForms[i].classList.remove('popup__form_opened');
-  }
-  popup.classList.add('popup_close');
-  popup.classList.remove('popup_opened');
-}
-
 //функция открытия поп-апа
-function openPopup() {
-  popup.classList.add('popup_opened');
-  popup.classList.remove('popup_close');
+function openPopup(popupElement) {
+  const popupElementParent = popupElement.closest('.popup');
+  popupElementParent.classList.add('popup_opened');
 }
 
 //функция заполнения значений полей ввода из разметки страницы (форма редактировать профиль)
 function inputInfo() {
-  const inputName = popup.querySelector('.popup__text_type_name'); //Нашли поле ввода Имя
-  const inputAbout = popup.querySelector('.popup__text_type_about'); //Нашли поле ввода О себе
-  const profileTitle = document.querySelector('.profile__title'); //Нашли Имя на странице
-  const profileSubtitle = document.querySelector('.profile__subtitle'); //Нашли О себе на странице
   inputName.value = profileTitle.textContent;
   inputAbout.value = profileSubtitle.textContent;
 }
 
+
+//функция закрытия поп-апа
+const buttonCloseList = document.querySelectorAll('.button_type_close');
+  buttonCloseList.forEach(function(buttonClose) {
+  buttonClose.addEventListener('click', closeButtonListener);
+})
+function closeButtonListener(evt) {
+  const buttonClose = evt.target;
+  closePopup(buttonClose);
+}
+
+function closePopup(element) {
+  const popupElementParent = element.closest('.popup');
+  popupElementParent.classList.remove('popup_opened');
+}
+
 //функция открытия формы Редактировать профиль
-function openFormEdit(){
-  openPopup();
+function openFormEditProfile(){
   inputInfo();
-  const formEditElement = popup.querySelector('.popup__form_edit');
-  formEditElement.classList.add('popup__form_opened');
+  openPopup(conteinerFormEditProfile);
 }
 
 //функция нажатия на кнопку Сохранить
 function editProfile(evt) {
   evt.preventDefault();
-  const inputName = popup.querySelector('.popup__text_type_name'); //Нашли поле ввода Имя
-  const inputAbout = popup.querySelector('.popup__text_type_about'); //Нашли поле ввода О себе
-  const profileTitle = document.querySelector('.profile__title'); //Нашли Имя на странице
-  const profileSubtitle = document.querySelector('.profile__subtitle'); //Нашли О себе на странице
-  profileTitle.textContent = inputName.value; //Запись значения поля Имя в текстовое содержимое на странице Имя
-  profileSubtitle.textContent = inputAbout.value; //Запись значения поля О себе в текстовое содержимое на странице О себе
-  closePopup();
+  profileTitle.textContent = inputName.value;
+  profileSubtitle.textContent = inputAbout.value;
+  closePopup(conteinerFormEditProfile);
 }
 
-//функция открытия формы Добавления карточки
-function openFormAdd(){
-  openPopup();
-  const formAddElement = popup.querySelector('.popup__form_add');
-  formAddElement.classList.add('popup__form_opened');
+//функция открытия формы Добавить карточку
+function openFormAddCard() {
+  openPopup(conteinerFormAddCard);
 }
 
 //функция нажатия на кнопку Создать
 function addCardElement(evt) {
   evt.preventDefault();
-  const inputTitle = popup.querySelector('.popup__text_type_title');
-  const inputUrl = popup.querySelector('.popup__text_type_url');
+  const inputTitle = conteinerFormAddCard.querySelector('.popup__text_type_title');
+  const inputUrl = conteinerFormAddCard.querySelector('.popup__text_type_url');
   let name = inputTitle.value;
   let url = inputUrl.value;
   addCard(name, url);
-  closePopup();
+  closePopup(conteinerFormAddCard);
   inputTitle.value = '';
   inputUrl.value = '';
 }
 
-//функция добавления карточки на страницу
-function addCard(name, url) {
-  const elements = document.querySelector('.elements'); //Нашли секцию Elements
-  const cardElemet = document.createElement('article'); //Создали тег article
-  cardElemet.classList.add('card'); //Присвоили класс card
-  elements.prepend(cardElemet); //Добавили карточку в начало секции Elements
-  const cardImage = document.createElement('img'); //Создали тег img
-  cardImage.classList.add('card__image'); //Присвоили класс
-  cardImage.setAttribute('src', url); //Задали атрибут
-  cardImage.setAttribute('alt', name); //Задали атрибут
-  const buttonDelete = document.createElement('button'); //Создали тег button
-  buttonDelete.classList.add('button', 'button_type_delete'); //Присвоили класс
-  buttonDelete.setAttribute('type', 'button'); //Задали атрибут
-  buttonDelete.setAttribute('aria-label', 'Удалить карточку'); //Задали атрибут
-  const cardItem = document.createElement('div'); //Создали тег div
-  cardItem.classList.add('card__item'); //Присвоили класс
-  cardElemet.prepend(cardImage, buttonDelete, cardItem); //Добавили в начало тега article элементы img, button, div
-  const cardCaption = document.createElement('h2');
-  cardCaption.classList.add('card__caption');
-  cardCaption.textContent = name;
-  const buttonLike = document.createElement('button');
-  buttonLike.classList.add('button', 'button_type_like');
-  buttonLike.setAttribute('type', 'button');
-  buttonLike.setAttribute('aria-label', 'Поставить лайк');
-  cardItem.prepend(cardCaption, buttonLike);
-  buttonDelete.addEventListener('click', deleteCard);
-  buttonLike.addEventListener('click', addLike);
+//функция открытия попапа с картинкой
+function openPopupWithImage(evt) {
+  let url = evt.target.src;
+  let name = evt.target.alt;
+  const popupImage = conteinerPopupImage.querySelector('.popup__image');
+  popupImage.src = url;
+  const popupFigcaption = conteinerPopupImage.querySelector('.popup__figcaption');
+  popupFigcaption.textContent = name;
+  openPopup(conteinerPopupImage);
 }
+
+const templateElement = document.querySelector('.template').content;
+const elementsSection = document.querySelector('.elements');
+
+//функция генерации карточки
+function generateCard(name, url) {
+  const cardElement = templateElement.querySelector('.card').cloneNode(true);
+  const cardImage = cardElement.querySelector('.card__image');
+  const cardCaption = cardElement.querySelector('.card__caption');
+  cardImage.src = url;
+  cardImage.alt = name;
+  cardCaption.textContent = name;
+  const buttonLike = cardElement.querySelector('.button_type_like');
+  const buttonDelete = cardElement.querySelector('.button_type_delete');
+  buttonLike.addEventListener('click', addLike);
+  buttonDelete.addEventListener('click', deleteCard);
+  cardImage.addEventListener('click', openPopupWithImage);
+  return cardElement;
+  }
+//функция добавления карточки на страницу
+  function addCard(name, url) {
+    const cardElement = generateCard(name, url);
+    elementsSection.prepend(cardElement);
+  }
+
 
 //вызов функция отрисовки стартовых карточек на странице
-// for (i=0; i<initialCards.length; i+=1) {
-//   addCard(initialCards[i].name, initialCards[i].url);}
-for (i=initialCards.length-1; i>=0; i-=1) {
-  addCard(initialCards[i].name, initialCards[i].url);
-}
+// for (i=initialCards.length-1; i>=0; i-=1) {
+//   addCard(initialCards[i].name, initialCards[i].url);
+// }
+initialCards.forEach(function(card) {
+  addCard(card.name, card.url);
+})
 
-buttonClose.addEventListener('click', closePopup);
-buttonEdit.addEventListener('click', openFormEdit);
-buttonAdd.addEventListener('click', openFormAdd);
-formEditElement.addEventListener('submit', editProfile);
-formAddElement.addEventListener('submit', addCardElement);
+
+buttonEditProfile.addEventListener('click', openFormEditProfile);
+buttonAddCard.addEventListener('click', openFormAddCard);
+formEditProfile.addEventListener('submit', editProfile);
+formAddCard.addEventListener('submit', addCardElement);
