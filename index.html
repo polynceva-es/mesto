@@ -17,7 +17,7 @@
   </header>
   <!--Основное содержимое сайта-->
   <main class="content page__conteiner">
-  <!--Секция Профиль-->
+    <!--Секция Профиль-->
     <section class="profile">
       <div class="profile__conteiner">
         <img class="profile__img" src="./images/Kusto.jpg" alt="Фото профиля">
@@ -31,7 +31,7 @@
       </div>
       <button class="button button_type_add" type="button" aria-label="Добавить карточку"></button>
     </section>
-  <!--Секция Карточки-->
+    <!--Секция Карточки-->
     <section class="elements"></section>
   </main>
   <!--Подвал сайта -->
@@ -39,19 +39,20 @@
     <p class="footer__caption">&copy; 2022 Mesto Russia</p>
   </footer>
   <!-- Поп-ап -->
-  <div class="popup">
+  <div class="popup popup_type_form">
     <div class="popup__conteiner popup__conteiner_form popup__conteiner_form_edit">
       <button class="button button_type_close" type="button" aria-label="Закрыть"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
       <form class="popup__form popup__form_edit" name="form-edit" action="#" method="get">
         <input class="popup__text popup__text_type_name" type="text" name="name" placeholder="Имя">
         <input class="popup__text popup__text_type_about" type="text" name="about" placeholder="О себе">
-        <button class="button button_type_submit" type="submit" name="saveProfileInfo" aria-label="Сохранить">Сохранить</button>
+        <button class="button button_type_submit" type="submit" name="saveProfileInfo"
+          aria-label="Сохранить">Сохранить</button>
       </form>
     </div>
   </div>
 
-    <div class="popup">
+  <div class="popup popup_type_form">
     <div class="popup__conteiner popup__conteiner_form popup__conteiner_form_add">
       <button class="button button_type_close" type="button" aria-label="Закрыть"></button>
       <h2 class="popup__title">Новое место</h2>
@@ -63,7 +64,7 @@
     </div>
   </div>
 
-  <div class="popup">
+  <div class="popup popup_type_image">
     <div class="popup__conteiner popup__conteiner_image">
       <button class="button button_type_close" type="button" aria-label="Закрыть"></button>
       <figure class="popup__figure">
@@ -73,7 +74,7 @@
     </div>
   </div>
 
-
+  <!--Блок template-->
   <template class="template">
     <article class="card">
       <img class="card__image" src="" alt="">
