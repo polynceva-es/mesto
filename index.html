@@ -22,63 +22,69 @@
       <div class="profile__conteiner">
         <img class="profile__img" src="./images/Kusto.jpg" alt="Фото профиля">
         <div class="profile__info">
-          <div class="profile__info-container">
+          <div class="profile__info-conteiner">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
-            <button class="button button_type_edit" type="button" aria-label="Редактировать"></button>
+            <button class="button button_type_edit" type="button" aria-label="Редактировать профиль"></button>
           </div>
           <p class="profile__subtitle">Исследователь океана</p>
         </div>
       </div>
-      <button class="button button_type_add" type="button" aria-label="Добавить"></button>
+      <button class="button button_type_add" type="button" aria-label="Добавить карточку"></button>
     </section>
     <!--Секция Карточки-->
-    <section class="elements">
-      <template>
-        <article class="card">
-          <img class="card__image" src="" alt="">
-          <button class="button button_type_delete" type="button" aria-label="Удалить карточку"></button>
-          <div class="card__item">
-            <h2 class="card__caption"></h2>
-            <button class="button button_type_like" type="button" aria-label="Поставить лайк"></button>
-          </div>
-        </article>
-      </template>
-
-    </section>
+    <section class="elements"></section>
   </main>
   <!--Подвал сайта -->
   <footer class="footer page__conteiner">
     <p class="footer__caption">&copy; 2022 Mesto Russia</p>
   </footer>
   <!-- Поп-ап -->
-  <div class="popup popup_close">
-    <div class="popup__container">
+  <div class="popup popup_type_form">
+    <div class="popup__conteiner popup__conteiner_form popup__conteiner_form_edit">
       <button class="button button_type_close" type="button" aria-label="Закрыть"></button>
-
+      <h2 class="popup__title">Редактировать профиль</h2>
       <form class="popup__form popup__form_edit" name="form-edit" action="#" method="get">
-        <h2 class="popup__title">Редактировать профиль</h2>
         <input class="popup__text popup__text_type_name" type="text" name="name" placeholder="Имя">
         <input class="popup__text popup__text_type_about" type="text" name="about" placeholder="О себе">
-        <button class="button button_type_submit" type="submit" name="save" aria-label="Сохранить">Сохранить</button>
+        <button class="button button_type_submit" type="submit" name="saveProfileInfo"
+          aria-label="Сохранить">Сохранить</button>
       </form>
-
-      <form class="popup__form popup__form_add" name="form-add" action="#" method="get">
-        <h2 class="popup__title">Новое место</h2>
-        <input class="popup__text popup__text_type_title" type="text" name="title" placeholder="Название">
-        <input class="popup__text popup__text_type_url" type="text" name="url" placeholder="Ссылка на картинку">
-        <button class="button button_type_submit" type="submit" name="add" aria-label="Создать">Создать</button>
-      </form>
-
-      <form class="popup__form" name="form-image" action="#" method="get">
-        <figure>
-          <figcaption>
-          </figcaption>
-        </figure>
-      </form>
-
-
     </div>
   </div>
+
+  <div class="popup popup_type_form">
+    <div class="popup__conteiner popup__conteiner_form popup__conteiner_form_add">
+      <button class="button button_type_close" type="button" aria-label="Закрыть"></button>
+      <h2 class="popup__title">Новое место</h2>
+      <form class="popup__form popup__form_add" name="form-add" action="#" method="get">
+        <input class="popup__text popup__text_type_title" type="text" name="title" placeholder="Название">
+        <input class="popup__text popup__text_type_url" type="text" name="url" placeholder="Ссылка на картинку">
+        <button class="button button_type_submit" type="submit" name="createdCard" aria-label="Создать">Создать</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="popup popup_type_image">
+    <div class="popup__conteiner popup__conteiner_image">
+      <button class="button button_type_close" type="button" aria-label="Закрыть"></button>
+      <figure class="popup__figure">
+        <img class="popup__image" src="" alt="">
+        <figcaption class="popup__figcaption"></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <!--Блок template-->
+  <template class="template">
+    <article class="card">
+      <img class="card__image" src="" alt="">
+      <button class="button button_type_delete" type="button" aria-label="Удалить карточку"></button>
+      <div class="card__item">
+        <h2 class="card__caption"></h2>
+        <button class="button button_type_like" type="button" aria-label="Поставить лайк"></button>
+      </div>
+    </article>
+  </template>
   <script src="./scripts/index.js"></script>
 </body>
 

@@ -5,7 +5,6 @@
   border: 2px solid #FFFFFF;
   border-radius: 2px;
   align-self: center;
-  cursor: pointer;
 }
 
 @media screen and (max-width: 880px) {
