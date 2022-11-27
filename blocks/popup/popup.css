@@ -4,10 +4,11 @@
   left: 0;
   width: 100%;
   height: 100%;
-  /* display: none; */
+  display: flex;
   justify-content: center;
   align-items: center;
-  background: rgb(0, 0, 0, 0.5);
   z-index: 3;
-
+  visibility: hidden; /* не виден */
+  opacity: 0;
+  transition: visibility 0s ease-in 700ms, opacity 700ms;
 }

@@ -1,8 +1,7 @@
 .button_type_like {
   background-image: url(../../../images/heart_disabled.svg);
-  width: 22px;
-  height: 19px;
-  margin-right: 20px;
+  width: 30px;
+  height: 20px;
   align-self: center;
   justify-self: center;
 }
