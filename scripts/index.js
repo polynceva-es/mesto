@@ -126,8 +126,18 @@ function addCardElement(evt) {
   inputUrl.value = '';
 }
 
+//функция закрытия поп-апа по клику на overlay
+function closePopupClickOnOverlay(evt) {
+  const popupElement = evt.target.closest('.popup');
+  if(evt.target === evt.currentTarget) {
+    closePopup(popupElement)
+  }
+}
+
 buttonEditProfile.addEventListener('click', openFormEditProfile);
 buttonAddCard.addEventListener('click', openFormAddCard);
 formEditProfile.addEventListener('submit', handleProfile);
 formAddCard.addEventListener('submit', addCardElement);
-
+popupFormEditProfile.addEventListener('click', closePopupClickOnOverlay);
+popupFormAddCard.addEventListener('click', closePopupClickOnOverlay);
+popupFormImage.addEventListener('click', closePopupClickOnOverlay);
