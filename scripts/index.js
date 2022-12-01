@@ -41,13 +41,13 @@ function openPopupWithImage(evt) {
 }
 
 //функция генерации карточки
-function generateCard(name, url) {
+function generateCard(card) {
   const cardElement = templateElement.querySelector('.card').cloneNode(true);
   const cardImage = cardElement.querySelector('.card__image');
   const cardCaption = cardElement.querySelector('.card__caption');
-  cardImage.src = url;
-  cardImage.alt = name;
-  cardCaption.textContent = name;
+  cardImage.src = card.url;
+  cardImage.alt = card.name;
+  cardCaption.textContent = card.name;
   const buttonLike = cardElement.querySelector('.button_type_like');
   const buttonDelete = cardElement.querySelector('.button_type_delete');
   buttonLike.addEventListener('click', addLike);
@@ -57,14 +57,14 @@ function generateCard(name, url) {
 }
 
 //функция добавления карточки на страницу
-function addCard(name, url) {
-  const cardElement = generateCard(name, url);
+function addCard(card) {
+  const cardElement = generateCard(card);
   elementsSection.prepend(cardElement);
 }
 
 //вызов функция отрисовки стартовых карточек на странице
 initialCards.forEach(function(card) {
-  addCard(card.name, card.url);
+  addCard(card);
 });
 
 //функция открытия поп-апа
@@ -116,15 +116,28 @@ function openFormAddCard() {
 //функция нажатия на кнопку Создать
 function addCardElement(evt) {
   evt.preventDefault();
-  const name = inputTitle.value;
-  const url = inputUrl.value;
-  addCard(name, url);
+  const card = {
+    name: inputTitle.value,
+    url: inputUrl.value
+  }
+  addCard(card);
   closePopup(popupFormAddCard);
   inputTitle.value = '';
   inputUrl.value = '';
+}
+
+//функция закрытия поп-апа по клику на overlay
+function closePopupClickOnOverlay(evt) {
+  const popupElement = evt.target.closest('.popup');
+  if(evt.target === evt.currentTarget) {
+    closePopup(popupElement)
+  }
 }
 
 buttonEditProfile.addEventListener('click', openFormEditProfile);
 buttonAddCard.addEventListener('click', openFormAddCard);
 formEditProfile.addEventListener('submit', handleProfile);
 formAddCard.addEventListener('submit', addCardElement);
+popupFormEditProfile.addEventListener('click', closePopupClickOnOverlay);
+popupFormAddCard.addEventListener('click', closePopupClickOnOverlay);
+popupFormImage.addEventListener('click', closePopupClickOnOverlay);
