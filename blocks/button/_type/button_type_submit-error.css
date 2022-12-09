@@ -1,0 +1,7 @@
+.button_type_submit-error {
+  opacity: 0.2;
+  color: #000000;
+  border: 1px solid #000000;
+  border-radius: 2px;
+  background: none;
+}

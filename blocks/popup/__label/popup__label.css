@@ -1,5 +1,4 @@
-.popup__form {
+.popup__label {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
 }
