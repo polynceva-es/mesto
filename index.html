@@ -44,8 +44,14 @@
       <button class="button button_type_close" type="button" aria-label="Закрыть"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
       <form class="popup__form popup__form_edit" name="form-edit" action="#" method="get">
-        <input class="popup__text popup__text_type_name" type="text" name="name" placeholder="Имя">
-        <input class="popup__text popup__text_type_about" type="text" name="about" placeholder="О себе">
+        <label class="popup__label">
+          <input class="popup__text popup__text_type_name" type="text" name="name" placeholder="Имя" minlength="2"
+            maxlength="40" required>
+          <span class="popup__error"></span>
+          <input class="popup__text popup__text_type_about" type="text" name="about" placeholder="О себе" minlength="2"
+            maxlength="200" required>
+          <span class="popup__error"></span>
+        </label>
         <button class="button button_type_submit" type="submit" name="saveProfileInfo"
           aria-label="Сохранить">Сохранить</button>
       </form>
@@ -57,8 +63,14 @@
       <button class="button button_type_close" type="button" aria-label="Закрыть"></button>
       <h2 class="popup__title">Новое место</h2>
       <form class="popup__form popup__form_add" name="form-add" action="#" method="get">
-        <input class="popup__text popup__text_type_title" type="text" name="title" placeholder="Название">
-        <input class="popup__text popup__text_type_url" type="text" name="url" placeholder="Ссылка на картинку">
+        <label class="popup__label">
+          <input class="popup__text popup__text_type_title" type="text" name="title" placeholder="Название"
+            minlength="2" maxlength="30" required>
+          <span class="popup__error"></span>
+          <input class="popup__text popup__text_type_url" type="url" name="url" placeholder="Ссылка на картинку"
+            required>
+          <span class="popup__error"></span>
+        </label>
         <button class="button button_type_submit" type="submit" name="createdCard" aria-label="Создать">Создать</button>
       </form>
     </div>
@@ -86,6 +98,7 @@
     </article>
   </template>
   <script src="./scripts/cards.js"></script>
+  <script src="./scripts/validate.js"></script>
   <script src="./scripts/index.js"></script>
 </body>
 
