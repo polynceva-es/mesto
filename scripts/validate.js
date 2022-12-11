@@ -69,12 +69,24 @@
     });
   };
 
+  //функция удаления ошибок валидации
+  function removeValidationErrors (formPopup, inputList, validationConfig) {
+    inputList.forEach(function(inputElement) {
+      hideInputError(formPopup, inputElement, validationConfig);
+    });
+  };
+
+  const validationConfig = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.button_type_submit',
+    inactiveButtonClass: 'button_type_submit-error',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__error_true'
+  };
+
 //найдем на странице все формы, вызовем функцию валидации форм
-enableValidation({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.button_type_submit',
-  inactiveButtonClass: 'button_type_submit-error',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_true'
-});
+enableValidation(validationConfig);
+
+
+
