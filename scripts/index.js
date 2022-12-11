@@ -16,6 +16,10 @@ const profileSubtitle = document.querySelector('.profile__subtitle');
 const closeButtons = Array.from(document.querySelectorAll('.button_type_close'));
 const templateElement = document.querySelector('.template').content;
 const elementsSection = document.querySelector('.elements');
+const inputListformEditProfile = Array.from(formEditProfile.querySelectorAll('.popup__input'));
+const inputListformAddCard = Array.from(formAddCard.querySelectorAll('.popup__input'));
+const buttonSubmitFormEditProfile = formEditProfile.querySelector('.button_type_submit');
+const buttonSubmitFormAddCard = formAddCard.querySelector('.button_type_submit');
 
 //функция нажатия на кнопку Like
 function addLike(evt) {
@@ -104,14 +108,12 @@ closeButtons.forEach(function (buttonClose) {
 });
 
 //функция валидации и открытия поп-апа
-function validateAndOpenPopup(formPopup, popupElement) {
-  const inputList = Array.from(formPopup.querySelectorAll('.popup__input'));
-  inputList.forEach(function(inputElement) {
+function validateAndOpenPopup(formPopup, popupElement, inputList, buttonElement) {
+    inputList.forEach(function(inputElement) {
     hideInputError(formPopup, inputElement, {
       inputErrorClass: 'popup__input_type_error',
       errorClass: 'popup__error_true'});
   });
-  const buttonElement = formPopup.querySelector('.button_type_submit');
   disabledButtonSubmit(inputList, buttonElement, {inactiveButtonClass: 'button_type_submit-error'});
   openPopup(popupElement);
 };
@@ -125,7 +127,7 @@ function inputInfo() {
 //функция открытия формы Редактировать профиль
 function openFormEditProfile() {
   inputInfo();
-  validateAndOpenPopup(formEditProfile, popupEditProfile);
+  validateAndOpenPopup(formEditProfile, popupEditProfile, inputListformEditProfile, buttonSubmitFormEditProfile);
 };
 
 //функция нажатия на кнопку Сохранить
@@ -138,7 +140,7 @@ function handleProfile(evt) {
 //функция открытия формы Добавить карточку
 function openFormAddCard() {
   formAddCard.reset();
-  validateAndOpenPopup(formAddCard, popupAddCard);
+  validateAndOpenPopup(formAddCard, popupAddCard, inputListformAddCard, buttonSubmitFormAddCard);
 };
 
 //функция нажатия на кнопку Создать
