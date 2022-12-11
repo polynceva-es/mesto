@@ -81,8 +81,7 @@ initialCards.forEach(function (card) {
 });
 
 //функция закрытия поп-апа по клику на overlay
-function closePopupClickOnOverlay(evt) {
-  const popupElement = evt.target.closest('.popup');
+function closePopupClickOnOverlay(evt, popupElement) {
   if (evt.target === evt.currentTarget) {
     closePopup(popupElement);
   };
@@ -107,17 +106,6 @@ closeButtons.forEach(function (buttonClose) {
   buttonClose.addEventListener('click', handleButtonСloseClick);
 });
 
-//функция валидации и открытия поп-апа
-function validateAndOpenPopup(formPopup, popupElement, inputList, buttonElement) {
-    inputList.forEach(function(inputElement) {
-    hideInputError(formPopup, inputElement, {
-      inputErrorClass: 'popup__input_type_error',
-      errorClass: 'popup__error_true'});
-  });
-  disabledButtonSubmit(inputList, buttonElement, {inactiveButtonClass: 'button_type_submit-error'});
-  openPopup(popupElement);
-};
-
 //функция заполнения значений полей ввода из разметки страницы (форма редактировать профиль)
 function inputInfo() {
   inputName.value = profileTitle.textContent;
@@ -127,11 +115,13 @@ function inputInfo() {
 //функция открытия формы Редактировать профиль
 function openFormEditProfile() {
   inputInfo();
-  validateAndOpenPopup(formEditProfile, popupEditProfile, inputListformEditProfile, buttonSubmitFormEditProfile);
+  removeValidationErrors (formEditProfile, inputListformEditProfile, validationConfig);
+  disabledButtonSubmit(inputListformEditProfile, buttonSubmitFormEditProfile, validationConfig);
+  openPopup(popupEditProfile);
 };
 
 //функция нажатия на кнопку Сохранить
-function handleProfile(evt) {
+function submitEditProfileForm(evt) {
   profileTitle.textContent = inputName.value;
   profileSubtitle.textContent = inputAbout.value;
   closePopup(popupEditProfile);
@@ -140,7 +130,9 @@ function handleProfile(evt) {
 //функция открытия формы Добавить карточку
 function openFormAddCard() {
   formAddCard.reset();
-  validateAndOpenPopup(formAddCard, popupAddCard, inputListformAddCard, buttonSubmitFormAddCard);
+  removeValidationErrors (formAddCard, inputListformAddCard, validationConfig);
+  disabledButtonSubmit(inputListformAddCard, buttonSubmitFormAddCard, validationConfig);
+  openPopup(popupAddCard);
 };
 
 //функция нажатия на кнопку Создать
@@ -156,8 +148,8 @@ function addCardElement(evt) {
 
 buttonEditProfile.addEventListener('click', openFormEditProfile);
 buttonAddCard.addEventListener('click', openFormAddCard);
-formEditProfile.addEventListener('submit', handleProfile);
+formEditProfile.addEventListener('submit', submitEditProfileForm);
 formAddCard.addEventListener('submit', addCardElement);
-popupEditProfile.addEventListener('click', closePopupClickOnOverlay);
-popupAddCard.addEventListener('click', closePopupClickOnOverlay);
-popupImage.addEventListener('click', closePopupClickOnOverlay);
+popupEditProfile.addEventListener('click', (evt) => {closePopupClickOnOverlay(evt, popupEditProfile)});
+popupAddCard.addEventListener('click', (evt) => {closePopupClickOnOverlay(evt, popupAddCard)});
+popupImage.addEventListener('click', (evt) => {closePopupClickOnOverlay(evt, popupImage)});
