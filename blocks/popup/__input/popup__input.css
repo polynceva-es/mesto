@@ -1,4 +1,4 @@
-.popup__text {
+.popup__input {
   width: 358px;
   box-sizing: border-box;
   padding: 0 0 9px 0;
@@ -13,7 +13,7 @@
 }
 
 @media screen and (max-width: 530px) {
-  .popup__text {
+  .popup__input {
     width: 238px;
   }
 }
