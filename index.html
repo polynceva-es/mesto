@@ -39,18 +39,20 @@
     <p class="footer__caption">&copy; 2022 Mesto Russia</p>
   </footer>
   <!-- Поп-ап -->
-  <div class="popup popup_type_form">
-    <div class="popup__conteiner popup__conteiner_form popup__conteiner_form_edit">
+  <div class="popup popup_type_form popup_type_form-editprofile">
+    <div class="popup__conteiner popup__conteiner_form">
       <button class="button button_type_close" type="button" aria-label="Закрыть"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__form popup__form_edit" name="form-edit" action="#" method="get">
+      <form class="popup__form popup__form_edit" name="form-edit" action="#" method="get" novalidate>
         <label class="popup__label">
-          <input class="popup__text popup__text_type_name" type="text" name="name" placeholder="Имя" minlength="2"
-            maxlength="40" required>
-          <span class="popup__error"></span>
-          <input class="popup__text popup__text_type_about" type="text" name="about" placeholder="О себе" minlength="2"
-            maxlength="200" required>
-          <span class="popup__error"></span>
+          <input id="input-name" class="popup__input popup__input_type_name" type="text" name="name" placeholder="Имя"
+            minlength="2" maxlength="40" required>
+          <span class="popup__error input-name-error"></span>
+        </label>
+        <label class="popup__label">
+          <input id="input-about" class="popup__input popup__input_type_about" type="text" name="about"
+            placeholder="О себе" minlength="2" maxlength="200" required>
+          <span class="popup__error input-about-error"></span>
         </label>
         <button class="button button_type_submit" type="submit" name="saveProfileInfo"
           aria-label="Сохранить">Сохранить</button>
@@ -58,18 +60,20 @@
     </div>
   </div>
 
-  <div class="popup popup_type_form">
-    <div class="popup__conteiner popup__conteiner_form popup__conteiner_form_add">
+  <div class="popup popup_type_form popup_type_form-addcard">
+    <div class="popup__conteiner popup__conteiner_form">
       <button class="button button_type_close" type="button" aria-label="Закрыть"></button>
       <h2 class="popup__title">Новое место</h2>
-      <form class="popup__form popup__form_add" name="form-add" action="#" method="get">
+      <form class="popup__form popup__form_add" name="form-add" action="#" method="get" novalidate>
         <label class="popup__label">
-          <input class="popup__text popup__text_type_title" type="text" name="title" placeholder="Название"
-            minlength="2" maxlength="30" required>
-          <span class="popup__error"></span>
-          <input class="popup__text popup__text_type_url" type="url" name="url" placeholder="Ссылка на картинку"
-            required>
-          <span class="popup__error"></span>
+          <input id="input-title" class="popup__input popup__input_type_title" type="text" name="title"
+            placeholder="Название" minlength="2" maxlength="30" required>
+          <span class="popup__error input-title-error"></span>
+        </label>
+        <label class="popup__label">
+          <input id="input-url" class="popup__input popup__input_type_url" type="url" name="url"
+            placeholder="Ссылка на картинку" required>
+          <span class="popup__error input-url-error"></span>
         </label>
         <button class="button button_type_submit" type="submit" name="createdCard" aria-label="Создать">Создать</button>
       </form>
@@ -77,7 +81,7 @@
   </div>
 
   <div class="popup popup_type_image">
-    <div class="popup__conteiner popup__conteiner_image">
+    <div class="popup__conteiner">
       <button class="button button_type_close" type="button" aria-label="Закрыть"></button>
       <figure class="popup__figure">
         <img class="popup__image">
