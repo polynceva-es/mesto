@@ -1,8 +1,10 @@
 import { Card } from './Card.js';
-import { initialCards } from "./InitialCards.js";
+import { initialCards } from "./initialCards.js";
 import { FormValidator } from './FormValidator.js';
-import {validationConfig} from './ValidationConfig.js';
+import {validationConfig} from './validationConfig.js';
 
+//секция с карточками
+const elementsSection = document.querySelector('.elements');
 //модальные окна
 const popupEditProfile = document.querySelector('.popup_type_form-editprofile');
 const popupAddCard = document.querySelector('.popup_type_form-addcard');
@@ -23,12 +25,6 @@ const profileTitle = document.querySelector('.profile__title');
 const profileSubtitle = document.querySelector('.profile__subtitle');
 //массив кнопок "закрыть"
 const closeButtons = Array.from(document.querySelectorAll('.button_type_close'));
-//массивы инпутов для каждой формы
-const inputListformEditProfile = Array.from(formEditProfile.querySelectorAll('.popup__input'));
-const inputListformAddCard = Array.from(formAddCard.querySelectorAll('.popup__input'));
-//кнопки сабмита
-const buttonSubmitFormEditProfile = formEditProfile.querySelector('.button_type_submit');
-const buttonSubmitFormAddCard = formAddCard.querySelector('.button_type_submit');
 
 //отрисовка стартовых карточек на странице
 initialCards.forEach((item) => {
@@ -55,9 +51,9 @@ function closePopup(popupElement) {
 
 //функция добавления карточки на страницу
 function addCard(object) {
-  const card = new Card(object, '.template', openPopup);
+  const card = new Card(object, '.template', handleOpenPopupImage);
   const cardElement = card.generateCard();
-  document.querySelector('.elements').prepend(cardElement);
+  elementsSection.prepend(cardElement);
 };
 
 //функция закрытия поп-апа по клику на overlay
@@ -87,20 +83,21 @@ closeButtons.forEach(function (buttonClose) {
 });
 
 //функция заполнения значений полей ввода из разметки страницы (форма редактировать профиль)
-function inputInfo() {
+function fillProfilePopupInputs() {
   inputName.value = profileTitle.textContent;
   inputAbout.value = profileSubtitle.textContent;
 };
 
 //функция открытия формы Редактировать профиль
 function openFormEditProfile() {
-  inputInfo();
-  formEditProfileValidator.resetFormElementValidationState(inputListformEditProfile, buttonSubmitFormEditProfile);//
+  fillProfilePopupInputs();
+  formEditProfileValidator.resetFormElementValidationState();
   openPopup(popupEditProfile);
 };
 
 //функция нажатия на кнопку Сохранить
 function submitEditProfileForm(evt) {
+  evt.preventDefault();
   profileTitle.textContent = inputName.value;
   profileSubtitle.textContent = inputAbout.value;
   closePopup(popupEditProfile);
@@ -109,20 +106,33 @@ function submitEditProfileForm(evt) {
 //функция открытия формы Добавить карточку
 function openFormAddCard() {
   formAddCard.reset();
-  formAddCardValidator.resetFormElementValidationState(inputListformAddCard, buttonSubmitFormAddCard);//
+  formAddCardValidator.resetFormElementValidationState();
   openPopup(popupAddCard);
 };
 
 //функция нажатия на кнопку Создать
 function addCardElement(evt) {
-  const object = {
+  evt.preventDefault();
+  const cardObject = {
     name: inputTitle.value,
     url: inputUrl.value,
   };
-  addCard(object);
+  addCard(cardObject);
   closePopup(popupAddCard);
   formAddCard.reset();
 };
+
+//открытие модального окна с картинкой
+function handleOpenPopupImage(caption, link) {
+  const popupImage = document.querySelector('.popup_type_image');
+  const popupImageElement = popupImage.querySelector('.popup__image');
+  const popupFigcaptionElement = popupImage.querySelector('.popup__figcaption');
+  popupImageElement.src = link;
+  popupImageElement.alt = caption;
+  popupFigcaptionElement.textContent = caption;
+  openPopup(popupImage);
+  };
+
 //слушатели событий
 buttonEditProfile.addEventListener('click', openFormEditProfile);
 buttonAddCard.addEventListener('click', openFormAddCard);

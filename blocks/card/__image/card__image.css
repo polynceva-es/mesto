@@ -1,5 +1,6 @@
 .card__image {
   object-fit: cover;
+  background-color: black;
   max-width: 282px;
   min-height: 282px;
   border-radius: 10px 10px 0 0;

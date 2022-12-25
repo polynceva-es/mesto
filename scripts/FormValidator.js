@@ -4,7 +4,6 @@
 
 export class FormValidator {
   constructor(object, formElement) {
-    this._formSelector = object.formSelector;
     this._inputSelector = object.inputSelector;
     this._submitButtonSelector = object.submitButtonSelector;
     this._inactiveButtonClass = object.inactiveButtonClass;
@@ -39,54 +38,51 @@ _checkInputValid(inputElement) {
 };
 
 //функция проверки всех полей на валидность(возвращает true(если хотябы одно поле не валидно) или false(если все поля валидны))
-_checkAllInputValid(inputList) {
-  return inputList.some((inputElement) => {
+_checkAllInputValid() {
+  return this._inputList.some((inputElement) => {
     return !inputElement.validity.valid;
   });
 };
 
 //функция стилизации кнопки (делает кнопку не/активной)
-_disabledButtonSubmit(inputList, buttonElement) {
-  if(this._checkAllInputValid(inputList)) {
-    buttonElement.classList.add(this._inactiveButtonClass);
-    buttonElement.setAttribute('disabled', true);
+_toggleButtonSubmitState() {
+  if(this._checkAllInputValid()) {
+    this._buttonElement.classList.add(this._inactiveButtonClass);
+    this._buttonElement.setAttribute('disabled', true);
   } else {
-    buttonElement.classList.remove(this._inactiveButtonClass);
-    buttonElement.removeAttribute('disabled');
+    this._buttonElement.classList.remove(this._inactiveButtonClass);
+    this._buttonElement.removeAttribute('disabled');
   };
 };
 
 //функция добавления обработчиков событий всем полям формы
 _setEventListeners() {
-  const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
-  const buttonElement = this._formElement.querySelector(this._submitButtonSelector);
-  this._disabledButtonSubmit(inputList, buttonElement);
-  inputList.forEach((inputElement) => {
+  this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
+  this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
+  this._toggleButtonSubmitState();
+  this._inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
       this._checkInputValid(inputElement);
-      this._disabledButtonSubmit(inputList, buttonElement);
+      this._toggleButtonSubmitState();
     });
   });
 };
 
 //функция добавления обработчиков событий всем формам
 enableValidation() {
-  this._formElement.addEventListener('submit', (evt) => {
-      evt.preventDefault();
-    });
-    this._setEventListeners();
+  this._setEventListeners();
 };
 
 //функция удаления ошибок валидации
-_removeValidationErrors (inputList) {
-  inputList.forEach((inputElement) => {
+_removeValidationErrors () {
+  this._inputList.forEach((inputElement) => {
     this._hideInputError(inputElement);
   });
 };
 
 //функция сброса ошибок
-resetFormElementValidationState(inputList, buttonElement) {
-  this._removeValidationErrors(inputList);
-  this._disabledButtonSubmit(inputList, buttonElement);
+resetFormElementValidationState() {
+  this._removeValidationErrors();
+  this._toggleButtonSubmitState();
 };
 }
