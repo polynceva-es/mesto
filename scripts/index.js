@@ -57,9 +57,9 @@ function addCard(object) {
 };
 
 //функция закрытия поп-апа по клику на overlay
-function closePopupClickOnOverlay(evt, popupElement) {
+function closePopupClickOnOverlay(evt) {
   if (evt.target === evt.currentTarget) {
-    closePopup(popupElement);
+    closePopup(evt.currentTarget);
   };
 };
 
