@@ -45,13 +45,13 @@
       <h2 class="popup__title">Редактировать профиль</h2>
       <form class="popup__form popup__form_edit" name="form-edit" action="#" method="get" novalidate>
         <label class="popup__label">
-          <input id="input-name" class="popup__input popup__input_type_name" type="text" name="name" placeholder="Имя"
-            minlength="2" maxlength="40" required>
+          <input id="input-name" class="popup__input" type="text" name="name" placeholder="Имя" minlength="2"
+            maxlength="40" required>
           <span class="popup__error input-name-error"></span>
         </label>
         <label class="popup__label">
-          <input id="input-about" class="popup__input popup__input_type_about" type="text" name="about"
-            placeholder="О себе" minlength="2" maxlength="200" required>
+          <input id="input-about" class="popup__input" type="text" name="about" placeholder="О себе" minlength="2"
+            maxlength="200" required>
           <span class="popup__error input-about-error"></span>
         </label>
         <button class="button button_type_submit" type="submit" name="saveProfileInfo"
@@ -66,13 +66,12 @@
       <h2 class="popup__title">Новое место</h2>
       <form class="popup__form popup__form_add" name="form-add" action="#" method="get" novalidate>
         <label class="popup__label">
-          <input id="input-title" class="popup__input popup__input_type_title" type="text" name="title"
-            placeholder="Название" minlength="2" maxlength="30" required>
+          <input id="input-title" class="popup__input" type="text" name="title" placeholder="Название" minlength="2"
+            maxlength="30" required>
           <span class="popup__error input-title-error"></span>
         </label>
         <label class="popup__label">
-          <input id="input-url" class="popup__input popup__input_type_url" type="url" name="url"
-            placeholder="Ссылка на картинку" required>
+          <input id="input-url" class="popup__input" type="url" name="url" placeholder="Ссылка на картинку" required>
           <span class="popup__error input-url-error"></span>
         </label>
         <button class="button button_type_submit" type="submit" name="createdCard" aria-label="Создать">Создать</button>
@@ -101,7 +100,7 @@
       </div>
     </article>
   </template>
-  <script type="module" src="./scripts/index.js"></script>
+  <script type="module" src="./scripts/pages/index.js"></script>
 </body>
 
 </html>
