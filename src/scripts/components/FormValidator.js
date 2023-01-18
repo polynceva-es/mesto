@@ -3,12 +3,12 @@
   errorElement - <span> - поле с текстом ошибки  под полем ввода*/
 
 export class FormValidator {
-  constructor(object, formElement) {
-    this._inputSelector = object.inputSelector;
-    this._submitButtonSelector = object.submitButtonSelector;
-    this._inactiveButtonClass = object.inactiveButtonClass;
-    this._inputErrorClass = object.inputErrorClass;
-    this._errorClass = object.errorClass;
+  constructor(validationConfig, formElement) {
+    this._inputSelector = validationConfig.inputSelector;
+    this._submitButtonSelector = validationConfig.submitButtonSelector;
+    this._inactiveButtonClass = validationConfig.inactiveButtonClass;
+    this._inputErrorClass = validationConfig.inputErrorClass;
+    this._errorClass = validationConfig.errorClass;
     this._formElement = formElement;
   }
 

@@ -9,8 +9,14 @@ import { PopupWithForm } from '../scripts/components/PopupWithForm.js';
 import {buttonEditProfile, buttonAddCard, formEditProfile, formAddCard} from '../scripts/utils/constants.js'
 import { UserInfo } from '../scripts/components/UserInfo.js';
 
+function createCard(CardData) {
+  const card = new Card(CardData, '.template', handleOpenPopupImage);
+  const cardElement = card.generateCard();
+  return cardElement;
+};
+
 function handleOpenPopupImage(name, url) {
-  popupWithImage.openPopup(name, url);
+  popupWithImage.open(name, url);
 };
 
 //получение информации о пользователе с страницы
@@ -20,9 +26,7 @@ const userInfo = new UserInfo('.profile__title', '.profile__subtitle');
 const cardList = new Section ({
   items: initialCards,
   renderer: (cardItem) => {
-    const card = new Card(cardItem, '.template', handleOpenPopupImage);
-    const cardElement = card.generateCard();
-    cardList.addItem(cardElement);
+    cardList.addItem(createCard(cardItem));
   }
 }, '.elements');
 cardList.renderItems();
@@ -43,7 +47,7 @@ const popupEditProfile = new PopupWithForm(
   '.popup__form_edit',
   (inputValues) => {
     userInfo.setUserInfo(inputValues);
-    popupEditProfile.closePopup()
+    popupEditProfile.close()
   }
 );
 popupEditProfile.setEventListeners();
@@ -53,10 +57,8 @@ const popupAddCard = new PopupWithForm(
   '.popup_type_form-addcard',
   '.popup__form_add',
   (formData) => {
-    const newCard = new Card(formData, '.template', handleOpenPopupImage);
-    const newCardElement = newCard.generateCard();
-    cardList.addItem(newCardElement);
-    popupAddCard.closePopup();
+    cardList.addItem(createCard(formData));
+    popupAddCard.close();
   }
 );
 popupAddCard.setEventListeners();
@@ -66,10 +68,10 @@ buttonEditProfile.addEventListener('click', () => {
   const userData = userInfo.getUserInfo();
   popupEditProfile.setInputValues(userData);
   formEditProfileValidator.resetFormElementValidationState();
-  popupEditProfile.openPopup();
+  popupEditProfile.open();
 });
 
 buttonAddCard.addEventListener('click', () => {
   formAddCardValidator.resetFormElementValidationState();
-  popupAddCard.openPopup();
+  popupAddCard.open();
 });
