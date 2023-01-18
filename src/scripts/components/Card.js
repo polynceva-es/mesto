@@ -1,7 +1,7 @@
 export class Card {
-  constructor (object, templateSelector, handleOpenPopup) {
-    this._caption = object.name;
-    this._imageLink = object.url;
+  constructor ({title, url}, templateSelector, handleOpenPopup) {
+    this._caption = title;
+    this._imageLink = url;
     this._templateSelector = templateSelector;
     this.handleOpenPopup = handleOpenPopup;
   }
