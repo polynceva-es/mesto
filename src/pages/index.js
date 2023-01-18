@@ -1,12 +1,17 @@
-import { Card } from '../components/Card.js';
-import { initialCards } from "../utils/initialCards.js";
-import { Section } from '../components/Section.js';
-import { FormValidator } from '../components/FormValidator.js';
-import {validationConfig} from '../utils/validationConfig.js';
-import { PopupWithImage } from '../components/PopupWithImage.js';
-import { PopupWithForm } from '../components/PopupWithForm.js';
-import {buttonEditProfile, buttonAddCard, formEditProfile, formAddCard} from '../utils/constants.js'
-import { UserInfo } from '../components/UserInfo.js';
+import '../pages/index.css';
+import { Card } from '../scripts/components/Card.js';
+import { initialCards } from "../scripts/utils/initialCards.js";
+import { Section } from '../scripts/components/Section.js';
+import { FormValidator } from '../scripts/components/FormValidator.js';
+import {validationConfig} from '../scripts/utils/validationConfig.js';
+import { PopupWithImage } from '../scripts/components/PopupWithImage.js';
+import { PopupWithForm } from '../scripts/components/PopupWithForm.js';
+import {buttonEditProfile, buttonAddCard, formEditProfile, formAddCard} from '../scripts/utils/constants.js'
+import { UserInfo } from '../scripts/components/UserInfo.js';
+
+function handleOpenPopupImage(name, url) {
+  popupWithImage.openPopup(name, url);
+};
 
 //получение информации о пользователе с страницы
 const userInfo = new UserInfo('.profile__title', '.profile__subtitle');
@@ -31,11 +36,6 @@ formAddCardValidator.enableValidation();
 //модальное окно с картинкой
 const popupWithImage = new PopupWithImage ('.popup_type_image');
 popupWithImage.setEventListeners();
-
-function handleOpenPopupImage(name, url) {
-  popupWithImage.openPopup(name, url);
-};
-
 
 //модальное окно Редактировать профиль
 const popupEditProfile = new PopupWithForm(

@@ -6,21 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Сервис Mesto">
   <meta name="author" content="Ekaterina Polyntseva">
-  <link rel="stylesheet" href="./pages/index.css">
   <title>Cервис Mesto</title>
 </head>
 
 <body class="page">
   <!--Шапка сайта -->
   <header class="header page__conteiner">
-    <img class="header__logo" src="./images/logo.svg" alt="Логотип Место">
+    <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Логотип Место">
   </header>
   <!--Основное содержимое сайта-->
   <main class="content page__conteiner">
     <!--Секция Профиль-->
     <section class="profile">
       <div class="profile__conteiner">
-        <img class="profile__img" src="./images/Kusto.jpg" alt="Фото профиля">
+        <img class="profile__img" src="<%=require('./images/Kusto.jpg')%>" alt="Фото профиля">
         <div class="profile__info">
           <div class="profile__info-conteiner">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -100,7 +99,6 @@
       </div>
     </article>
   </template>
-  <script type="module" src="./scripts/pages/index.js"></script>
 </body>
 
 </html>
