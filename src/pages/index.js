@@ -1,13 +1,22 @@
 import '../pages/index.css';
 import { Card } from '../scripts/components/Card.js';
-import { initialCards } from "../scripts/utils/initialCards.js";
 import { Section } from '../scripts/components/Section.js';
 import { FormValidator } from '../scripts/components/FormValidator.js';
 import {validationConfig} from '../scripts/utils/validationConfig.js';
 import { PopupWithImage } from '../scripts/components/PopupWithImage.js';
 import { PopupWithForm } from '../scripts/components/PopupWithForm.js';
-import {buttonEditProfile, buttonAddCard, formEditProfile, formAddCard} from '../scripts/utils/constants.js'
 import { UserInfo } from '../scripts/components/UserInfo.js';
+import {
+  buttonEditProfile,
+  buttonAddCard,
+  formEditProfile,
+  formAddCard
+} from '../scripts/utils/constants.js'
+
+import { api } from '../scripts/components/Api.js'
+
+
+
 
 function createCard(CardData) {
   const card = new Card(CardData, '.template', handleOpenPopupImage);
@@ -19,17 +28,22 @@ function handleOpenPopupImage(name, url) {
   popupWithImage.open(name, url);
 };
 
+
+
+
 //получение информации о пользователе с страницы
-const userInfo = new UserInfo('.profile__title', '.profile__subtitle');
+const userInfo = new UserInfo('.profile__title', '.profile__subtitle', '.profile__img');
+userInfo.setUserInfoFromServer();
+
 
 //отрисовка стартовых карточек на странице
-const cardList = new Section ({
-  items: initialCards,
-  renderer: (cardItem) => {
+
+const cardList = new Section (
+  (cardItem) => {
     cardList.addItem(createCard(cardItem));
   }
-}, '.elements');
-cardList.renderItems();
+  , '.elements');
+api.getInitialCards(cardList.renderItems.bind(cardList));
 
 //валидация форм
 const formEditProfileValidator = new FormValidator(validationConfig, formEditProfile);
@@ -46,7 +60,7 @@ const popupEditProfile = new PopupWithForm(
   '.popup_type_form-editprofile',
   '.popup__form_edit',
   (inputValues) => {
-    userInfo.setUserInfo(inputValues);
+    api.setUserInfoToServer(inputValues, ()=> {userInfo.setUserInfo(inputValues)});
     popupEditProfile.close()
   }
 );
