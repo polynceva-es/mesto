@@ -5,6 +5,7 @@ import { FormValidator } from '../scripts/components/FormValidator.js';
 import {validationConfig} from '../scripts/utils/validationConfig.js';
 import { PopupWithImage } from '../scripts/components/PopupWithImage.js';
 import { PopupWithForm } from '../scripts/components/PopupWithForm.js';
+import { PopupDeleteCard } from '../scripts/components/PopupDeleteCard.js';
 import { UserInfo } from '../scripts/components/UserInfo.js';
 import {
   buttonEditProfile,
@@ -17,15 +18,20 @@ import {
 
 import { api } from '../scripts/components/Api.js'
 
+function handleOpenPopupImage(name, url) {
+  popupWithImage.open(name, url);
+};
+
+function handleOpenPopupDeleteCard(card) {
+  popupDeleteCard.open(card);
+}
+
 function createCard(CardData) {
-  const card = new Card(CardData, '.template', handleOpenPopupImage);
+  const card = new Card(CardData, '.template', handleOpenPopupImage, handleOpenPopupDeleteCard);
   const cardElement = card.generateCard();
   return cardElement;
 };
 
-function handleOpenPopupImage(name, url) {
-  popupWithImage.open(name, url);
-};
 
 //получение информации о пользователе с страницы
 const userInfo = new UserInfo('.profile__title', '.profile__subtitle', '.profile__img');
@@ -91,6 +97,19 @@ const popupEditAvatar = new PopupWithForm(
   }
 );
 popupEditAvatar.setEventListeners();
+
+//модальное окно Удаления карточки
+const popupDeleteCard = new PopupDeleteCard(
+  '.popup_type_delete-card',
+  '.button_type_deleteCard',
+  (card) => {
+    console.log('delete card');
+    //api.////////
+    card.deleteCard();
+    popupDeleteCard.close();
+  }
+)
+popupDeleteCard.setEventListeners();
 
 
 //слушатели событий

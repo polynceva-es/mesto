@@ -35,6 +35,8 @@ class Api {
       .then(res => {if(res.ok) {return res.json()}})
       .catch(err => {console.log('Sorry,' + err)})
   }
+
+
 }
 
 export const api = new Api({

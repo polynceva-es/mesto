@@ -1,9 +1,10 @@
 export class Card {
-  constructor (cardData, templateSelector, handleOpenPopup) {
+  constructor (cardData, templateSelector, handleOpenPopup, handleOpenPopupDeleteCard) {
     this._caption = cardData.name;
     this._imageLink = cardData.link;
     this._templateSelector = templateSelector;
     this.handleOpenPopup = handleOpenPopup;
+    this.handleOpenPopupDeleteCard = handleOpenPopupDeleteCard;
   }
 //получение разметки темплейт тега карточки
   _getTemplate() {
@@ -26,7 +27,7 @@ export class Card {
 //установка слушателей событий
   _setEventListeners() {
     this._buttonLike.addEventListener('click', () => {this._addLike()});
-    this._buttonDelete.addEventListener('click', () => {this._deleteCard()});
+    this._buttonDelete.addEventListener('click', () => {this.handleOpenPopupDeleteCard(this);});
     this._cardImage.addEventListener('click', () => {this.handleOpenPopup(this._caption, this._imageLink)});
   }
 //обработчики событий:
@@ -35,7 +36,7 @@ export class Card {
     this._buttonLike.classList.toggle('button_active');
   }
 //удаление карточки
-  _deleteCard() {
+  deleteCard() {
     this._cardElement.remove();
   }
 }
