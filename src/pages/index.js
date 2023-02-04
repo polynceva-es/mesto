@@ -103,7 +103,6 @@ const popupDeleteCard = new PopupDeleteCard(
   '.popup_type_delete-card',
   '.button_type_deleteCard',
   (card) => {
-    console.log('delete card');
     //api.////////
     card.deleteCard();
     popupDeleteCard.close();
