@@ -9,14 +9,13 @@ import { UserInfo } from '../scripts/components/UserInfo.js';
 import {
   buttonEditProfile,
   buttonAddCard,
+  buttonEditAvatar,
   formEditProfile,
-  formAddCard
+  formAddCard,
+  formEditAvatar
 } from '../scripts/utils/constants.js'
 
 import { api } from '../scripts/components/Api.js'
-
-
-
 
 function createCard(CardData) {
   const card = new Card(CardData, '.template', handleOpenPopupImage);
@@ -28,12 +27,12 @@ function handleOpenPopupImage(name, url) {
   popupWithImage.open(name, url);
 };
 
-
-
-
 //получение информации о пользователе с страницы
 const userInfo = new UserInfo('.profile__title', '.profile__subtitle', '.profile__img');
-userInfo.setUserInfoFromServer();
+api.getUserInfoFromServer()
+  .then(res => {userInfo.setUserInfo(res);
+  userInfo.setUserAvatar(res);
+  });
 
 
 //отрисовка стартовых карточек на странице
@@ -43,13 +42,16 @@ const cardList = new Section (
     cardList.addItem(createCard(cardItem));
   }
   , '.elements');
-api.getInitialCards(cardList.renderItems.bind(cardList));
+api.getInitialCards()
+  .then(res => {cardList.renderItems(res)})
 
 //валидация форм
 const formEditProfileValidator = new FormValidator(validationConfig, formEditProfile);
 formEditProfileValidator.enableValidation();
 const formAddCardValidator = new FormValidator(validationConfig, formAddCard);
 formAddCardValidator.enableValidation();
+const formEditAvatarValidator = new FormValidator(validationConfig, formEditAvatar);
+formEditAvatarValidator.enableValidation();
 
 //модальное окно с картинкой
 const popupWithImage = new PopupWithImage ('.popup_type_image');
@@ -60,7 +62,8 @@ const popupEditProfile = new PopupWithForm(
   '.popup_type_form-editprofile',
   '.popup__form_edit',
   (inputValues) => {
-    api.setUserInfoToServer(inputValues, ()=> {userInfo.setUserInfo(inputValues)});
+    api.setUserInfoToServer(inputValues)
+      .then(res => {userInfo.setUserInfo(res)})
     popupEditProfile.close()
   }
 );
@@ -77,6 +80,19 @@ const popupAddCard = new PopupWithForm(
 );
 popupAddCard.setEventListeners();
 
+//модальное окно Редактировать аватар
+const popupEditAvatar = new PopupWithForm(
+  '.popup_type_form-editavatar',
+  '.popup__form_editavatar',
+  (inputValue) => {
+    api.setUserAvatartoServer(inputValue)
+      .then(res => userInfo.setUserAvatar(res));
+    popupEditAvatar.close();
+  }
+);
+popupEditAvatar.setEventListeners();
+
+
 //слушатели событий
 buttonEditProfile.addEventListener('click', () => {
   const userData = userInfo.getUserInfo();
@@ -89,3 +105,9 @@ buttonAddCard.addEventListener('click', () => {
   formAddCardValidator.resetFormElementValidationState();
   popupAddCard.open();
 });
+
+buttonEditAvatar.addEventListener('click', (evt) => {
+  evt.preventDefault();
+  formEditAvatarValidator.resetFormElementValidationState();
+  popupEditAvatar.open();
+})

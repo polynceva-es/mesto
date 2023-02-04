@@ -9,25 +9,19 @@ export class UserInfo {
   getUserInfo() {
     const userData = {
       name: this._profileTitle.textContent,
-      about: this._profileSubtitle.textContent
+      about: this._profileSubtitle.textContent,
+      avatar: this._userAvatar
     };
     return userData;
   };
 
   //метод принимает новые данные пользователя и добавляет их на страницу.
-  setUserInfo(inputValues) {
-    this._profileTitle.textContent = inputValues.name;
-    this._profileSubtitle.textContent = inputValues.about;
+  setUserInfo(result) {
+    this._profileTitle.textContent = result.name;
+    this._profileSubtitle.textContent = result.about;
   };
 
-  //заполнение профиля информацией с сервера
-  setUserInfoFromServer(){
-     api.getUserInfoFromServer((result) => {
-      this._profileTitle.textContent = result.name;
-      this._profileSubtitle.textContent = result.about;
-      this._userAvatar.src = result.avatar;
-    });
-  };
-//?? отправка данных пользователя на сервер
-
+  setUserAvatar(result) {
+    this._userAvatar.src = result.avatar;
+  }
 }

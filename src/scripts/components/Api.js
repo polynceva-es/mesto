@@ -4,29 +4,35 @@ class Api {
     this.headers = options.headers;
   }
 
-  getInitialCards(rendererItems){
-    fetch(`${this.url}cards`, {headers: this.headers})
+  getInitialCards(){
+    return fetch(`${this.url}cards`, {headers: this.headers})
       .then(res => {if(res.ok){return res.json()}})
-      .then((data) => {rendererItems(data);})
       .catch(err => {console.log('Sorry,' + err)})
   }
 
-  getUserInfoFromServer(setUserInfo){
-    fetch(`${this.url}users/me`, {headers: this.headers})
+  getUserInfoFromServer(){
+    return fetch(`${this.url}users/me`, {headers: this.headers})
       .then(res => {if(res.ok) {return res.json()}})
-      .then(data => {setUserInfo(data)})
       .catch(err => {console.log('Sorry,' + err)})
   }
 
-  setUserInfoToServer(formValues, setUserInfo) {
-
-    fetch(`${this.url}users/me`, {
+  setUserInfoToServer(formValues) {
+    return fetch(`${this.url}users/me`, {
       method: 'PATCH',
       headers: this.headers,
       body: JSON.stringify({name: formValues.name, about: formValues.about})
     })
       .then(res => {if(res.ok) {return res.json()}})
-      .then(data => {setUserInfo(data)})
+      .catch(err => {console.log('Sorry,' + err)})
+    }
+
+  setUserAvatartoServer(formValue) {
+    return fetch(`${this.url}users/me/avatar`, {
+      method: 'PATCH',
+      headers: this.headers,
+      body: JSON.stringify({avatar: formValue.avatar})
+    })
+      .then(res => {if(res.ok) {return res.json()}})
       .catch(err => {console.log('Sorry,' + err)})
   }
 }
