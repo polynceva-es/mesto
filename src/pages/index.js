@@ -80,7 +80,8 @@ const popupAddCard = new PopupWithForm(
   '.popup_type_form-addcard',
   '.popup__form_add',
   (formData) => {
-    cardList.addItem(createCard(formData));
+    api.setNewCardToServer(formData)
+      .then(res => cardList.addItem(createCard(res)));
     popupAddCard.close();
   }
 );

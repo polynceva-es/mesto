@@ -1,4 +1,3 @@
-import { api } from '../components/Api.js'
 export class UserInfo {
   constructor(userNameSelector, userInfoSelector, userAvatarSelector) {
     this._profileTitle = document.querySelector(userNameSelector);

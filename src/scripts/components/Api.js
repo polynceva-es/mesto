@@ -36,7 +36,15 @@ class Api {
       .catch(err => {console.log('Sorry,' + err)})
   }
 
-
+  setNewCardToServer(formValues) {
+    return fetch(`${this.url}cards`, {
+      method: 'POST',
+      headers: this.headers,
+      body: JSON.stringify({name: formValues.title, link: formValues.url})
+    })
+      .then(res => {if(res.ok) {return res.json()}})
+      .catch(err => {console.log('Sorry,' + err)})
+  }
 }
 
 export const api = new Api({
