@@ -3,7 +3,7 @@ class Api {
     this.url = options.baseUrl;
     this.headers = options.headers;
   }
-
+//getInitialLikes()???
   getInitialCards(){
     return fetch(`${this.url}cards`, {headers: this.headers})
       .then(res => {if(res.ok){return res.json()}})
@@ -53,10 +53,25 @@ class Api {
       })
       .then(res => {if(res.ok) {return res.json()}})
       .catch(err => {console.log('Sorry,' + err)})
-
     }
-  //setLikeCardToServer() {}
-  //getLikeCardFromServer() {}
+
+  setLikeCardToServer(cardID) {
+      return fetch(`${this.url}cards/${cardID}/likes`, {
+        method: 'PUT',
+        headers: this.headers
+      })
+      .then(res => {if(res.ok) {return res.json()}})
+      .catch(err => {console.log('Sorry,' + err)})
+  }
+  getLikeCardFromServer(cardID) {
+    return fetch(`${this.url}cards/${cardID}/likes`, {
+        method: 'DELETE',
+        headers: this.headers
+      })
+      .then(res => {if(res.ok) {return res.json()}})
+      .catch(err => {console.log('Sorry,' + err)})
+  }
+
 }
 
 export const api = new Api({

@@ -27,8 +27,8 @@ function handleOpenPopupDeleteCard(card) {
 }
 
 function createCard(cardData, userID) {
-  const card = new Card(cardData, '.template', handleOpenPopupImage, handleOpenPopupDeleteCard);
-  const cardElement = card.generateCard(userID);
+  const card = new Card(userID, cardData, '.template', handleOpenPopupImage, handleOpenPopupDeleteCard);
+  const cardElement = card.generateCard();
   return cardElement;
 };
 
@@ -99,14 +99,12 @@ const popupDeleteCard = new PopupDeleteCard(
   '.popup_type_delete-card',
   '.button_type_deleteCard',
   (card) => {
-    console.log(card._cardID)
     api.setDeleteCardToServer(card._cardID)
       .then(() => {
         card.deleteCard(); popupDeleteCard.close()})
   }
 )
 popupDeleteCard.setEventListeners();
-
 
 //слушатели событий
 buttonEditProfile.addEventListener('click', () => {
