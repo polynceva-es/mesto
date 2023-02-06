@@ -3,6 +3,8 @@ export class Card {
     this._caption = cardData.name;
     this._imageLink = cardData.link;
     this._likeNum = cardData.likes.length;
+    this._ownerCardID = cardData.owner._id;
+    this._cardID = cardData._id;
     this._templateSelector = templateSelector;
     this.handleOpenPopup = handleOpenPopup;
     this.handleOpenPopupDeleteCard = handleOpenPopupDeleteCard;
@@ -13,7 +15,7 @@ export class Card {
     return cardElement;
   }
 //генерация карточки
-  generateCard() {
+  generateCard(userID) {
     this._cardElement = this._getTemplate();
     this._cardImage = this._cardElement.querySelector('.card__image');
     this._cardCaption = this._cardElement.querySelector('.card__caption');
@@ -25,6 +27,7 @@ export class Card {
     this._cardImage.alt = this._caption;
     this._cardCaption.textContent = this._caption;
     this._likeNumConteiner.textContent = this._likeNum;
+    if(!(userID === this._ownerCardID)) {this._buttonDelete.classList.add('button_none')};
     return this._cardElement;
   }
 //установка слушателей событий

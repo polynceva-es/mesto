@@ -9,6 +9,7 @@ export class PopupDeleteCard extends Popup {
 
   open(card){
     this._card = card;
+    console.log(this._card)
     super.open();
   }
 

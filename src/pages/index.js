@@ -15,8 +15,8 @@ import {
   formAddCard,
   formEditAvatar
 } from '../scripts/utils/constants.js'
-
 import { api } from '../scripts/components/Api.js'
+
 
 function handleOpenPopupImage(name, url) {
   popupWithImage.open(name, url);
@@ -26,30 +26,25 @@ function handleOpenPopupDeleteCard(card) {
   popupDeleteCard.open(card);
 }
 
-function createCard(CardData) {
-  const card = new Card(CardData, '.template', handleOpenPopupImage, handleOpenPopupDeleteCard);
-  const cardElement = card.generateCard();
+function createCard(cardData, userID) {
+  const card = new Card(cardData, '.template', handleOpenPopupImage, handleOpenPopupDeleteCard);
+  const cardElement = card.generateCard(userID);
   return cardElement;
 };
 
-
-//получение информации о пользователе с страницы
 const userInfo = new UserInfo('.profile__title', '.profile__subtitle', '.profile__img');
-api.getUserInfoFromServer()
-  .then(res => {userInfo.setUserInfo(res);
-  userInfo.setUserAvatar(res);
-  });
-
-
-//отрисовка стартовых карточек на странице
-
 const cardList = new Section (
   (cardItem) => {
-    cardList.addItem(createCard(cardItem));
-  }
-  , '.elements');
-api.getInitialCards()
-  .then(res => {cardList.renderItems(res)})
+    cardList.addItem(createCard(cardItem, userInfo.getUserID()));
+  },
+  '.elements');
+
+Promise.all([api.getUserInfoFromServer(), api.getInitialCards()])
+.then(res => {
+  userInfo.setUserInfo(res[0]);
+  userInfo.setUserAvatar(res[0]);
+  cardList.renderItems(res[1]);
+})
 
 //валидация форм
 const formEditProfileValidator = new FormValidator(validationConfig, formEditProfile);
@@ -69,7 +64,7 @@ const popupEditProfile = new PopupWithForm(
   '.popup__form_edit',
   (inputValues) => {
     api.setUserInfoToServer(inputValues)
-      .then(res => {userInfo.setUserInfo(res)})
+      .then(res => userInfo.setUserInfo(res))
     popupEditProfile.close()
   }
 );
@@ -81,7 +76,7 @@ const popupAddCard = new PopupWithForm(
   '.popup__form_add',
   (formData) => {
     api.setNewCardToServer(formData)
-      .then(res => cardList.addItem(createCard(res)));
+      .then(res => cardList.addItem(createCard(res, userInfo.getUserID())));
     popupAddCard.close();
   }
 );
@@ -104,9 +99,10 @@ const popupDeleteCard = new PopupDeleteCard(
   '.popup_type_delete-card',
   '.button_type_deleteCard',
   (card) => {
-    //api.////////
-    card.deleteCard();
-    popupDeleteCard.close();
+    console.log(card._cardID)
+    api.setDeleteCardToServer(card._cardID)
+      .then(() => {
+        card.deleteCard(); popupDeleteCard.close()})
   }
 )
 popupDeleteCard.setEventListeners();

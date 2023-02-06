@@ -14,13 +14,18 @@ export class UserInfo {
     return userData;
   };
 
-  //метод принимает новые данные пользователя и добавляет их на страницу.
+  //методы принимают новые данные пользователя и добавляет их на страницу.
   setUserInfo(result) {
     this._profileTitle.textContent = result.name;
     this._profileSubtitle.textContent = result.about;
+    this._userId = result._id;
   };
 
   setUserAvatar(result) {
     this._userAvatar.src = result.avatar;
+  }
+
+  getUserID(){
+    return this._userId;
   }
 }
