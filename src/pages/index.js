@@ -17,6 +17,15 @@ import {
 } from '../scripts/utils/constants.js'
 import { api } from '../scripts/components/Api.js'
 
+function handleAddLike(card) {
+  if(!card.hasMyLike()) {
+    api.setLikeCardToServer(card._cardID)
+      .then(res => {card.setLikes(res)})
+    } else {
+    api.getLikeCardFromServer(card._cardID)
+      .then(res => {card.setLikes(res)})
+    }
+}
 
 function handleOpenPopupImage(name, url) {
   popupWithImage.open(name, url);
@@ -24,11 +33,12 @@ function handleOpenPopupImage(name, url) {
 
 function handleOpenPopupDeleteCard(card) {
   popupDeleteCard.open(card);
-}
+};
 
 function createCard(cardData, userID) {
-  const card = new Card(userID, cardData, '.template', handleOpenPopupImage, handleOpenPopupDeleteCard);
+  const card = new Card(userID, cardData, '.template', handleAddLike, handleOpenPopupImage, handleOpenPopupDeleteCard);
   const cardElement = card.generateCard();
+  card.setLikes(cardData);
   return cardElement;
 };
 
@@ -64,7 +74,7 @@ const popupEditProfile = new PopupWithForm(
   '.popup__form_edit',
   (inputValues) => {
     api.setUserInfoToServer(inputValues)
-      .then(res => userInfo.setUserInfo(res))
+      .then(res => userInfo.setUserInfo(res));
     popupEditProfile.close()
   }
 );
@@ -101,7 +111,9 @@ const popupDeleteCard = new PopupDeleteCard(
   (card) => {
     api.setDeleteCardToServer(card._cardID)
       .then(() => {
-        card.deleteCard(); popupDeleteCard.close()})
+        card.deleteCard();
+        popupDeleteCard.close()
+      })
   }
 )
 popupDeleteCard.setEventListeners();
