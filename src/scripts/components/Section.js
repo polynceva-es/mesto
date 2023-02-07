@@ -6,19 +6,18 @@
 //addItem - метод, который принимает DOM-элемент и добавляет его в контейнер
 
 export class Section {
-  constructor({items, renderer}, selector) {
-    this._initialArray = items;
+  constructor(renderer, selector) {
     this._renderer = renderer;
     this._container = document.querySelector(selector);
   };
 
-  renderItems() {
-    this._initialArray.forEach((item) => {
+  renderItems(initialArray) {
+    initialArray.forEach((item) => {
       this._renderer(item);
     });
   };
 
   addItem(element) {
-    this._container.prepend(element);
+    this._container.append(element);
   };
 }

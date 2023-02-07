@@ -19,13 +19,13 @@
     <!--Секция Профиль-->
     <section class="profile">
       <div class="profile__conteiner">
-        <img class="profile__img" src="<%=require('./images/Kusto.jpg')%>" alt="Фото профиля">
+        <a class="profile__img_link" href=""><img class="profile__img" src="" alt="Фото профиля"></a>
         <div class="profile__info">
           <div class="profile__info-conteiner">
-            <h1 class="profile__title">Жак-Ив Кусто</h1>
+            <h1 class="profile__title"></h1>
             <button class="button button_type_edit" type="button" aria-label="Редактировать профиль"></button>
           </div>
-          <p class="profile__subtitle">Исследователь океана</p>
+          <p class="profile__subtitle"></p>
         </div>
       </div>
       <button class="button button_type_add" type="button" aria-label="Добавить карточку"></button>
@@ -54,6 +54,21 @@
           <span class="popup__error input-about-error"></span>
         </label>
         <button class="button button_type_submit" type="submit" name="saveProfileInfo"
+          aria-label="Сохранить">Сохранить</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="popup popup_type_form popup_type_form-editavatar">
+    <div class="popup__conteiner popup__conteiner_form">
+      <button class="button button_type_close" type="button" aria-label="Закрыть"></button>
+      <h2 class="popup__title">Обновить аватар</h2>
+      <form class="popup__form popup__form_editavatar" name="form-editavatar" action="#" method="get" novalidate>
+        <label class="popup__label">
+          <input id="input-urlavatar" class="popup__input" type="url" name="avatar" placeholder="Ссылка на картинку" required>
+          <span class="popup__error input-urlavatar-error"></span>
+        </label>
+        <button class="button button_type_submit" type="submit" name="saveProfileAvatar"
           aria-label="Сохранить">Сохранить</button>
       </form>
     </div>
@@ -88,6 +103,15 @@
     </div>
   </div>
 
+  <div class="popup popup_type_form popup_type_delete-card">
+    <div class="popup__conteiner popup__conteiner_form">
+      <button class="button button_type_close" type="button" aria-label="Закрыть"></button>
+      <h2 class="popup__title popup__title_type-delete">Вы уверены?</h2>
+      <button class="button button_type_submit button_type_deleteCard" type="button" name="deleteCard"
+        aria-label="Да">Да</button>
+    </div>
+  </div>
+
   <!--Блок template-->
   <template class="template">
     <article class="card">
@@ -95,8 +119,11 @@
       <button class="button button_type_delete" type="button" aria-label="Удалить карточку"></button>
       <div class="card__item">
         <h2 class="card__caption"></h2>
-        <button class="button button_type_like" type="button" aria-label="Поставить лайк"></button>
-      </div>
+        <div class="card__like">
+          <button class="button button_type_like" type="button" aria-label="Поставить лайк"></button>
+          <p class="card__like_num"></p>
+        </div>
+        </div>
     </article>
   </template>
 </body>
