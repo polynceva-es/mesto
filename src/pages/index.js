@@ -51,7 +51,6 @@ const cardList = new Section (
 
 Promise.all([api.getUserInfo(), api.getInitialCards()])
 .then(res => {
-  console.log(res[1]);
   userInfo.setUserInfo(res[0]);
   userInfo.setUserAvatar(res[0]);
   cardList.renderItems(res[1]);
@@ -74,9 +73,13 @@ const popupEditProfile = new PopupWithForm(
   '.popup_type_form-editprofile',
   '.popup__form_edit',
   (inputValues) => {
+    popupEditProfile.renderLoading(true, 'Сохранение...');
     api.setUserInfo(inputValues)
-      .then(res => userInfo.setUserInfo(res));
-    popupEditProfile.close()
+      .then(res => userInfo.setUserInfo(res))
+      .then(() => {popupEditProfile.close()})
+      .catch(err => {console.log('Ошибка:' + err)})
+      .finally(() => {popupEditProfile.renderLoading(false, 'Сохранить')});
+
   }
 );
 popupEditProfile.setEventListeners();
@@ -86,9 +89,12 @@ const popupAddCard = new PopupWithForm(
   '.popup_type_form-addcard',
   '.popup__form_add',
   (formData) => {
+    popupAddCard.renderLoading(true, 'Сохранение...');
     api.setNewCard(formData)
-      .then(res => cardList.addItem(createCard(res, userInfo.getUserID())));
-    popupAddCard.close();
+      .then(res => cardList.addItem(createCard(res, userInfo.getUserID())))
+      .then(() => {popupAddCard.close();})
+      .catch(err => {console.log('Ошибка:' + err)})
+      .finally(() => {popupAddCard.renderLoading(false, 'Создать')});
   }
 );
 popupAddCard.setEventListeners();
@@ -98,9 +104,12 @@ const popupEditAvatar = new PopupWithForm(
   '.popup_type_form-editavatar',
   '.popup__form_editavatar',
   (inputValue) => {
+    popupEditAvatar.renderLoading(true, 'Сохранение...')
     api.setUserAvatar(inputValue)
-      .then(res => userInfo.setUserAvatar(res));
-    popupEditAvatar.close();
+      .then(res => userInfo.setUserAvatar(res))
+      .then(() => {popupEditAvatar.close();})
+      .catch(err => {console.log('Ошибка:' + err)})
+      .finally(() => {popupEditAvatar.renderLoading(false, 'Сохранить')});
   }
 );
 popupEditAvatar.setEventListeners();
@@ -111,10 +120,9 @@ const popupDeleteCard = new PopupDeleteCard(
   '.button_type_deleteCard',
   (card) => {
     api.setDeleteCard(card._cardID)
-      .then(() => {
-        card.deleteCard();
-        popupDeleteCard.close()
-      })
+      .then(() => {card.deleteCard()})
+      .then(() => {popupDeleteCard.close()})
+      .catch(err => {console.log('Ошибка:' + err)});
   }
 )
 popupDeleteCard.setEventListeners();

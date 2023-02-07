@@ -6,14 +6,14 @@ class Api {
 
   getInitialCards(){
     return fetch(`${this.url}cards`, {headers: this.headers})
-      .then(res => {if(res.ok){return res.json()}})
-      .catch(err => {console.log('Sorry,' + err)})
+      .then(res => {if(res.ok){return res.json()} else{return Promise.reject(`Ошибка: ${res.status}`)}})
+      .catch(err => {console.log('Ошибка:' + err)})
   }
 
   getUserInfo(){
     return fetch(`${this.url}users/me`, {headers: this.headers})
-      .then(res => {if(res.ok) {return res.json()}})
-      .catch(err => {console.log('Sorry,' + err)})
+      .then(res => {if(res.ok) {return res.json()} else{return Promise.reject(`Ошибка: ${res.status}`)}})
+      .catch(err => {console.log('Ошибка:' + err)})
   }
 
   setUserInfo(formValues) {
@@ -22,8 +22,8 @@ class Api {
       headers: this.headers,
       body: JSON.stringify({name: formValues.name, about: formValues.about})
     })
-      .then(res => {if(res.ok) {return res.json()}})
-      .catch(err => {console.log('Sorry,' + err)})
+      .then(res => {if(res.ok) {return res.json()} else{return Promise.reject(`Ошибка: ${res.status}`)}})
+      .catch(err => {console.log('Ошибка:' + err)})
     }
 
   setUserAvatar(formValue) {
@@ -32,8 +32,8 @@ class Api {
       headers: this.headers,
       body: JSON.stringify({avatar: formValue.avatar})
     })
-      .then(res => {if(res.ok) {return res.json()}})
-      .catch(err => {console.log('Sorry,' + err)})
+      .then(res => {if(res.ok) {return res.json()} else{return Promise.reject(`Ошибка: ${res.status}`)}})
+      .catch(err => {console.log('Ошибка:' + err)})
   }
 
   setNewCard(formValues) {
@@ -42,8 +42,8 @@ class Api {
       headers: this.headers,
       body: JSON.stringify({name: formValues.title, link: formValues.url})
     })
-      .then(res => {if(res.ok) {return res.json()}})
-      .catch(err => {console.log('Sorry,' + err)})
+      .then(res => {if(res.ok) {return res.json()} else{return Promise.reject(r`Ошибка: ${res.status}`)}})
+      .catch(err => {console.log('Ошибка:' + err)})
   }
 
     setDeleteCard(cardID) {
@@ -51,8 +51,8 @@ class Api {
         method: 'DELETE',
         headers: this.headers
       })
-      .then(res => {if(res.ok) {return res.json()}})
-      .catch(err => {console.log('Sorry,' + err)})
+      .then(res => {if(res.ok) {return res.json()} else{return Promise.reject(`Ошибка: ${res.status}`)}})
+      .catch(err => {console.log('Ошибка:' + err)})
     }
 
   setLikeCard(cardID) {
@@ -60,16 +60,16 @@ class Api {
         method: 'PUT',
         headers: this.headers
       })
-      .then(res => {if(res.ok) {return res.json()}})
-      .catch(err => {console.log('Sorry,' + err)})
+      .then(res => {if(res.ok) {return res.json()} else{return Promise.reject(`Ошибка: ${res.status}`)}})
+      .catch(err => {console.log('Ошибка:' + err)})
   }
   deleteLikeCard(cardID) {
     return fetch(`${this.url}cards/${cardID}/likes`, {
         method: 'DELETE',
         headers: this.headers
       })
-      .then(res => {if(res.ok) {return res.json()}})
-      .catch(err => {console.log('Sorry,' + err)})
+      .then(res => {if(res.ok) {return res.json()} else{return Promise.reject(`Ошибка: ${res.status}`)}})
+      .catch(err => {console.log('Ошибка:' + err)})
   }
 
 }

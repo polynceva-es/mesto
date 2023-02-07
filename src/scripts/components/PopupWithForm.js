@@ -5,6 +5,7 @@ export class PopupWithForm extends Popup {
     super(popupSelector);
     this._formElement = this._popupElement.querySelector(formSelector);
     this._inputList = this._formElement.querySelectorAll('.popup__input');
+    this._buttonSubmit = this._formElement.querySelector('.button_type_submit');
     this._handleSubmitForm = handleSubmitForm;
   };
 
@@ -36,4 +37,16 @@ export class PopupWithForm extends Popup {
     super.close();
     this._formElement.reset();
   };
+
+  renderLoading(isLoading, text) {
+    if(isLoading) {
+      this._buttonSubmit.classList.add('button_type_submit-error');
+      this._buttonSubmit.setAttribute('disabled', true);
+      this._buttonSubmit.textContent = text;
+    } else {
+      this._buttonSubmit.classList.remove('button_type_submit-error');
+      this._buttonSubmit.removeAttribute('disabled');
+      this._buttonSubmit.textContent = text;
+    };
+  }
 }
