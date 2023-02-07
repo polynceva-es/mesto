@@ -56,6 +56,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
   userInfo.setUserAvatar(res[0]);
   cardList.renderItems(res[1].reverse());
 })
+.catch(err => {console.log('Ошибка:' + err)});
 
 //валидация форм
 const formEditProfileValidator = new FormValidator(validationConfig, formEditProfile);
