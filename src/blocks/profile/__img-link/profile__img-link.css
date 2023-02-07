@@ -1,4 +1,4 @@
-.profile__img_link {
+.profile__img-link {
   position: relative;
   background-color: rgba(0, 0, 0, 0);
 }
@@ -7,7 +7,7 @@
   height: 100%;
   content: "";
   background-color: rgba(0, 0, 0, 0.8);
-  background-image: url(../../../../images/edit-button-profile.svg);
+  background-image: url(../../../images/edit-button-profile.svg);
   background-repeat: no-repeat;
   background-position: center;
   z-index: 1;
