@@ -3,20 +3,20 @@ class Api {
     this.url = options.baseUrl;
     this.headers = options.headers;
   }
-//getInitialLikes()???
+
   getInitialCards(){
     return fetch(`${this.url}cards`, {headers: this.headers})
       .then(res => {if(res.ok){return res.json()}})
       .catch(err => {console.log('Sorry,' + err)})
   }
 
-  getUserInfoFromServer(){
+  getUserInfo(){
     return fetch(`${this.url}users/me`, {headers: this.headers})
       .then(res => {if(res.ok) {return res.json()}})
       .catch(err => {console.log('Sorry,' + err)})
   }
 
-  setUserInfoToServer(formValues) {
+  setUserInfo(formValues) {
     return fetch(`${this.url}users/me`, {
       method: 'PATCH',
       headers: this.headers,
@@ -26,7 +26,7 @@ class Api {
       .catch(err => {console.log('Sorry,' + err)})
     }
 
-  setUserAvatartoServer(formValue) {
+  setUserAvatar(formValue) {
     return fetch(`${this.url}users/me/avatar`, {
       method: 'PATCH',
       headers: this.headers,
@@ -36,7 +36,7 @@ class Api {
       .catch(err => {console.log('Sorry,' + err)})
   }
 
-  setNewCardToServer(formValues) {
+  setNewCard(formValues) {
     return fetch(`${this.url}cards`, {
       method: 'POST',
       headers: this.headers,
@@ -46,7 +46,7 @@ class Api {
       .catch(err => {console.log('Sorry,' + err)})
   }
 
-    setDeleteCardToServer(cardID) {
+    setDeleteCard(cardID) {
       return fetch(`${this.url}cards/${cardID}`, {
         method: 'DELETE',
         headers: this.headers
@@ -55,7 +55,7 @@ class Api {
       .catch(err => {console.log('Sorry,' + err)})
     }
 
-  setLikeCardToServer(cardID) {
+  setLikeCard(cardID) {
       return fetch(`${this.url}cards/${cardID}/likes`, {
         method: 'PUT',
         headers: this.headers
@@ -63,7 +63,7 @@ class Api {
       .then(res => {if(res.ok) {return res.json()}})
       .catch(err => {console.log('Sorry,' + err)})
   }
-  getLikeCardFromServer(cardID) {
+  deleteLikeCard(cardID) {
     return fetch(`${this.url}cards/${cardID}/likes`, {
         method: 'DELETE',
         headers: this.headers

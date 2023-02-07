@@ -19,10 +19,10 @@ import { api } from '../scripts/components/Api.js'
 
 function handleAddLike(card) {
   if(!card.hasMyLike()) {
-    api.setLikeCardToServer(card._cardID)
+    api.setLikeCard(card._cardID)
       .then(res => {card.setLikes(res)})
     } else {
-    api.getLikeCardFromServer(card._cardID)
+    api.deleteLikeCard(card._cardID)
       .then(res => {card.setLikes(res)})
     }
 }
@@ -49,8 +49,9 @@ const cardList = new Section (
   },
   '.elements');
 
-Promise.all([api.getUserInfoFromServer(), api.getInitialCards()])
+Promise.all([api.getUserInfo(), api.getInitialCards()])
 .then(res => {
+  console.log(res[1]);
   userInfo.setUserInfo(res[0]);
   userInfo.setUserAvatar(res[0]);
   cardList.renderItems(res[1]);
@@ -73,7 +74,7 @@ const popupEditProfile = new PopupWithForm(
   '.popup_type_form-editprofile',
   '.popup__form_edit',
   (inputValues) => {
-    api.setUserInfoToServer(inputValues)
+    api.setUserInfo(inputValues)
       .then(res => userInfo.setUserInfo(res));
     popupEditProfile.close()
   }
@@ -85,7 +86,7 @@ const popupAddCard = new PopupWithForm(
   '.popup_type_form-addcard',
   '.popup__form_add',
   (formData) => {
-    api.setNewCardToServer(formData)
+    api.setNewCard(formData)
       .then(res => cardList.addItem(createCard(res, userInfo.getUserID())));
     popupAddCard.close();
   }
@@ -97,7 +98,7 @@ const popupEditAvatar = new PopupWithForm(
   '.popup_type_form-editavatar',
   '.popup__form_editavatar',
   (inputValue) => {
-    api.setUserAvatartoServer(inputValue)
+    api.setUserAvatar(inputValue)
       .then(res => userInfo.setUserAvatar(res));
     popupEditAvatar.close();
   }
@@ -109,7 +110,7 @@ const popupDeleteCard = new PopupDeleteCard(
   '.popup_type_delete-card',
   '.button_type_deleteCard',
   (card) => {
-    api.setDeleteCardToServer(card._cardID)
+    api.setDeleteCard(card._cardID)
       .then(() => {
         card.deleteCard();
         popupDeleteCard.close()
