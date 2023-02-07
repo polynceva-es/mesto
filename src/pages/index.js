@@ -54,7 +54,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
 .then(res => {
   userInfo.setUserInfo(res[0]);
   userInfo.setUserAvatar(res[0]);
-  cardList.renderItems(res[1]);
+  cardList.renderItems(res[1].reverse());
 })
 
 //валидация форм
