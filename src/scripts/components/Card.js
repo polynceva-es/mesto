@@ -60,7 +60,6 @@ export class Card {
 
   hasMyLike() {
     return this._hasMyLike;
-
   }
 
   deleteCard() {

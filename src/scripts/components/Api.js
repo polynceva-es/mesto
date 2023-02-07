@@ -24,7 +24,7 @@ class Api {
     })
       .then(res => {if(res.ok) {return res.json()} else{return Promise.reject(`Ошибка: ${res.status}`)}})
       .catch(err => {console.log('Ошибка:' + err)})
-    }
+  }
 
   setUserAvatar(formValue) {
     return fetch(`${this.url}users/me/avatar`, {
@@ -71,7 +71,6 @@ class Api {
       .then(res => {if(res.ok) {return res.json()} else{return Promise.reject(`Ошибка: ${res.status}`)}})
       .catch(err => {console.log('Ошибка:' + err)})
   }
-
 }
 
 export const api = new Api({

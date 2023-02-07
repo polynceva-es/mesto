@@ -21,10 +21,10 @@ function handleAddLike(card) {
   if(!card.hasMyLike()) {
     api.setLikeCard(card._cardID)
       .then(res => {card.setLikes(res)})
-    } else {
+  } else {
     api.deleteLikeCard(card._cardID)
       .then(res => {card.setLikes(res)})
-    }
+  }
 }
 
 function handleOpenPopupImage(name, url) {
@@ -43,6 +43,7 @@ function createCard(cardData, userID) {
 };
 
 const userInfo = new UserInfo('.profile__title', '.profile__subtitle', '.profile__img');
+
 const cardList = new Section (
   (cardItem) => {
     cardList.addItem(createCard(cardItem, userInfo.getUserID()));
@@ -79,7 +80,6 @@ const popupEditProfile = new PopupWithForm(
       .then(() => {popupEditProfile.close()})
       .catch(err => {console.log('Ошибка:' + err)})
       .finally(() => {popupEditProfile.renderLoading(false, 'Сохранить')});
-
   }
 );
 popupEditProfile.setEventListeners();

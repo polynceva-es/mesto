@@ -68,12 +68,12 @@ export class FormValidator {
     });
   };
 
-  //добавления обработчики событий всем формам
+  //добавить обработчики событий всем формам
   enableValidation() {
     this._setEventListeners();
   };
 
-  //удалить ошибок валидации
+  //удалить ошибки валидации
   _removeValidationErrors () {
     this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
