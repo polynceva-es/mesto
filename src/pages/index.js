@@ -21,9 +21,11 @@ function handleAddLike(card) {
   if(!card.hasMyLike()) {
     api.setLikeCard(card._cardID)
       .then(res => {card.setLikes(res)})
+      .catch(err => {console.log('Ошибка:' + err)})
   } else {
     api.deleteLikeCard(card._cardID)
       .then(res => {card.setLikes(res)})
+      .catch(err => {console.log('Ошибка:' + err)})
   }
 }
 
@@ -33,6 +35,24 @@ function handleOpenPopupImage(name, url) {
 
 function handleOpenPopupDeleteCard(card) {
   popupDeleteCard.open(card);
+};
+
+function handleClickButtonEditProfile() {
+  const userData = userInfo.getUserInfo();
+  popupEditProfile.setInputValues(userData);
+  formEditProfileValidator.resetFormElementValidationState();
+  popupEditProfile.open();
+};
+
+function handleClickButtonAddCard() {
+  formAddCardValidator.resetFormElementValidationState();
+  popupAddCard.open();
+};
+
+function handleClickButtonEditAvatar(evt) {
+  evt.preventDefault();
+  formEditAvatarValidator.resetFormElementValidationState();
+  popupEditAvatar.open();
 };
 
 function createCard(cardData, userID) {
@@ -52,9 +72,10 @@ const cardList = new Section (
 
 Promise.all([api.getUserInfo(), api.getInitialCards()])
 .then(res => {
-  userInfo.setUserInfo(res[0]);
-  userInfo.setUserAvatar(res[0]);
-  cardList.renderItems(res[1].reverse());
+  const [userRes, initialCardsRes] = res;
+  userInfo.setUserInfo(userRes);
+  userInfo.setUserAvatar(userRes);
+  cardList.renderItems(initialCardsRes.reverse());
 })
 .catch(err => {console.log('Ошибка:' + err)});
 
@@ -77,8 +98,10 @@ const popupEditProfile = new PopupWithForm(
   (inputValues) => {
     popupEditProfile.renderLoading(true, 'Сохранение...');
     api.setUserInfo(inputValues)
-      .then(res => userInfo.setUserInfo(res))
-      .then(() => {popupEditProfile.close()})
+      .then(res => {
+        userInfo.setUserInfo(res);
+        popupEditProfile.close();
+      })
       .catch(err => {console.log('Ошибка:' + err)})
       .finally(() => {popupEditProfile.renderLoading(false, 'Сохранить')});
   }
@@ -92,8 +115,10 @@ const popupAddCard = new PopupWithForm(
   (formData) => {
     popupAddCard.renderLoading(true, 'Сохранение...');
     api.setNewCard(formData)
-      .then(res => cardList.addItem(createCard(res, userInfo.getUserID())))
-      .then(() => {popupAddCard.close();})
+      .then(res => {
+        cardList.addItem(createCard(res, userInfo.getUserID()));
+        popupAddCard.close();
+      })
       .catch(err => {console.log('Ошибка:' + err)})
       .finally(() => {popupAddCard.renderLoading(false, 'Создать')});
   }
@@ -107,8 +132,10 @@ const popupEditAvatar = new PopupWithForm(
   (inputValue) => {
     popupEditAvatar.renderLoading(true, 'Сохранение...')
     api.setUserAvatar(inputValue)
-      .then(res => userInfo.setUserAvatar(res))
-      .then(() => {popupEditAvatar.close();})
+      .then(res => {
+        userInfo.setUserAvatar(res);
+        popupEditAvatar.close();
+      })
       .catch(err => {console.log('Ошибка:' + err)})
       .finally(() => {popupEditAvatar.renderLoading(false, 'Сохранить')});
   }
@@ -121,28 +148,16 @@ const popupDeleteCard = new PopupDeleteCard(
   '.button_type_deleteCard',
   (card) => {
     api.setDeleteCard(card._cardID)
-      .then(() => {card.deleteCard()})
-      .then(() => {popupDeleteCard.close()})
+      .then(() => {
+        card.deleteCard();
+        popupDeleteCard.close();
+      })
       .catch(err => {console.log('Ошибка:' + err)});
   }
 )
 popupDeleteCard.setEventListeners();
 
 //слушатели событий
-buttonEditProfile.addEventListener('click', () => {
-  const userData = userInfo.getUserInfo();
-  popupEditProfile.setInputValues(userData);
-  formEditProfileValidator.resetFormElementValidationState();
-  popupEditProfile.open();
-});
-
-buttonAddCard.addEventListener('click', () => {
-  formAddCardValidator.resetFormElementValidationState();
-  popupAddCard.open();
-});
-
-buttonEditAvatar.addEventListener('click', (evt) => {
-  evt.preventDefault();
-  formEditAvatarValidator.resetFormElementValidationState();
-  popupEditAvatar.open();
-})
+buttonEditProfile.addEventListener('click', handleClickButtonEditProfile);
+buttonAddCard.addEventListener('click', handleClickButtonAddCard);
+buttonEditAvatar.addEventListener('click', handleClickButtonEditAvatar);
